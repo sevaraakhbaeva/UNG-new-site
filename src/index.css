@@ -1,10 +1,62 @@
 @font-face {
   font-family: "LabGrotesque";
-  src: url(./fonts/lab-grotesque-font/LabGrotesqueRegular.otf);
+  src: url("./fonts/lab-grotesque-all/LabGrotesque-Regular.ttf");
+}
+
+@font-face {
+  font-family: "LabGrotesque";
+  src: url("./fonts/lab-grotesque-all/LabGrotesque-BlackItalic.ttf");
+  font-style: italic;
+  color: black;
+}
+
+@font-face {
+  font-family: "LabGrotesque";
+  src: url("./fonts/lab-grotesque-all/LabGrotesque-Bold.ttf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "LabGrotesque";
+  src: url("./fonts/lab-grotesque-all/LabGrotesque-BoldItalic.ttf");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "LabGrotesque";
+  src: url("./fonts/lab-grotesque-all/LabGrotesque-Italic.ttf");
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "LabGrotesque";
+  src: url("./fonts/lab-grotesque-all/LabGrotesque-Light.ttf");
+  font-weight: lighter;
+}
+
+@font-face {
+  font-family: "LabGrotesque";
+  src: url("./fonts/lab-grotesque-all/LabGrotesque-LightItalic.ttf");
+  font-style: italic;
+  font-weight: lighter;
+}
+
+@font-face {
+  font-family: "LabGrotesque";
+  src: url("./fonts/lab-grotesque-all/LabGrotesque-Medium.ttf");
+  font-weight: bolder;
+}
+
+@font-face {
+  font-family: "LabGrotesque";
+  src: url("./fonts/lab-grotesque-all/LabGrotesque-MediumItalic.ttf");
+  font-style: italic;
+  font-weight: bolder;
 }
 
 body {
-  /* font-family: "LabGrotesque", sans-serif; */
+  /* font-family: "LabGrotesque", Calibri, sans-serif; */
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

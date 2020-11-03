@@ -2,22 +2,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import React from "react";
-// import Navbar from "./components/Navbar";
-import { default as Slider } from "./components/CusSlider";
-import News from "./components/News";
+import Navbar from "./components/Navbar";
+import Main from "./components/Main";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import Parallax from "./components/Parallax";
-import Ratings from "./components/Ratings";
-import DigitalTransformation from "./components/DigitalTransformation";
-import { Divider } from "@material-ui/core";
-import Partners from "./components/Partners";
-import Table from "./components/Table";
-import Map from "./components/Map";
+
 import Footer from "./components/Footer";
 
 const THEME = createMuiTheme({
   typography: {
-    fontFamily: "LabGrotesque",
+    fontFamily: "LabGrotesque, Calibri, sans-serif",
     fontSize: 14,
     body1: {
       lineHeight: "160%",
@@ -55,20 +48,9 @@ function App() {
   return (
     <ThemeProvider theme={THEME}>
       <div className="App">
-        {/* <Navbar /> */}
-        <Slider />
-        <News />
-        <Parallax />
-        <Ratings />
-        <Divider />
-        <DigitalTransformation />
-        <Divider />
-        <Partners />
-        <Divider />
-        <Table />
-        <Map />
-        <Divider />
-        <Footer />
+        <Navbar />
+        {/* <Main /> */}
+        {/* <Footer /> */}
       </div>
     </ThemeProvider>
   );

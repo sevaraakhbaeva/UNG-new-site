@@ -5,9 +5,19 @@ import { CSSProperties } from "@material-ui/styles";
 
 export interface CusButtonProps {
   variant?: "outlined" | "contained" | "text";
-  color?: "primary" | "secondary";
+  color?: "primary" | "secondary" | "white";
   style?: CSSProperties;
 }
+
+interface ColorProps {
+  [state: string]: string;
+}
+
+const colors: ColorProps = {
+  primary: "#03A3DF",
+  secondary: "#777777",
+  white: "#FFFFFF",
+};
 
 const useStyles = makeStyles({
   buttonContainer: {
@@ -21,13 +31,17 @@ const useStyles = makeStyles({
   },
 });
 
-const CusButton: FC<CusButtonProps> = ({ variant, color, children, style }) => {
+const CusButton: FC<CusButtonProps> = ({
+  variant,
+  color = "primary",
+  children,
+  style,
+}) => {
   const classes = useStyles();
   return (
     <Button
       className={classes.buttonContainer}
-      style={{ ...style }}
-      color={color}
+      style={{ color: colors[color], ...style }}
       variant={variant}
     >
       <Typography variant="h5" align="center" component="span">
@@ -39,7 +53,7 @@ const CusButton: FC<CusButtonProps> = ({ variant, color, children, style }) => {
 
 CusButton.defaultProps = {
   variant: "outlined",
-  color: "primary",
+  // color: "primary",
   style: {},
 };
 

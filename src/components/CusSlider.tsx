@@ -82,7 +82,7 @@ function CarouselItem(props: any) {
         <Typography variant="h4" className={classes.sliderDescription}>
           {props.item.description}
         </Typography>
-        <Button color="secondary" style={{ marginTop: "75px" }}>
+        <Button color="white" style={{ marginTop: "75px" }}>
           {"Batafsil"}
         </Button>
       </Box>
