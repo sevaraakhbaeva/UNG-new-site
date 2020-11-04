@@ -1,3 +1,4 @@
+/* tslint:disable */
 import React, { FC, CSSProperties, useState, useEffect } from "react";
 import {
   AppBar,
@@ -46,9 +47,21 @@ const useStyles = makeStyles({
   linkStyle: {
     color: "black",
     cursor: "pointer",
+    "&:hover": {
+      color: "#03A3DF",
+    },
   },
   closeButton: {
     padding: 0,
+  },
+  menuItemsWrap: {
+    // padding: "30px 0 30px 80px",
+  },
+  crossPosition: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    zIndex: 1000,
   },
 });
 
@@ -75,19 +88,29 @@ const topMenuItems = [
   },
 ];
 
-let currentMenuName: string = "";
-
 const Navbar: FC<NavbarProps> = ({ type }) => {
   const classes = useStyles();
   const textStyleObj: CSSProperties = { fontSize: 14 };
 
-  const [openMenu, setOpenMenu] = useState(false);
-  const toggleMenu = () => {
-    setOpenMenu(!openMenu);
+  const [menuNameIdx, setMenuNameIdx] = useState("");
+  const [itemsOfMenu, setItemsOfMenu] = useState("");
+
+  const toggleMenu = (item: string) => {
+    if (menuNameIdx === item) closeMenu();
+    else setMenuNameIdx(item);
+
+    setItemsOfMenu("");
   };
   const closeMenu = () => {
-    setOpenMenu(false);
+    setMenuNameIdx("");
   };
+
+  const getItemsOfMainMenu = (item: string) => {
+    setItemsOfMenu(item);
+  };
+
+  let openMenu = Boolean(menuNameIdx);
+  let openMenuItem = Boolean(itemsOfMenu);
 
   return (
     <>
@@ -136,18 +159,23 @@ const Navbar: FC<NavbarProps> = ({ type }) => {
               <Grid key={item} item>
                 <Link
                   underline="none"
-                  className={classes.linkStyle}
                   onClick={(
                     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
                   ) => {
                     event.preventDefault();
-                    toggleMenu();
-                    currentMenuName = item;
+                    toggleMenu(item);
                   }}
+                  style={{ color: "black", cursor: "pointer" }}
                 >
                   <IconWithText
                     textStyle={textStyleObj}
-                    Icon={openMenu ? <ArrowUpIcon /> : <ArrowDownIcon />}
+                    Icon={
+                      openMenu && menuNameIdx === item ? (
+                        <ArrowUpIcon />
+                      ) : (
+                        <ArrowDownIcon />
+                      )
+                    }
                     text={item}
                     reverse
                   />
@@ -164,35 +192,64 @@ const Navbar: FC<NavbarProps> = ({ type }) => {
             <Grid
               item
               xs={8}
+              container
               style={{
                 borderRight: "1px solid #CCCCCC",
                 padding: "30px 0 30px 80px",
               }}
             >
-              {menuItems[currentMenuName].map((item, i) => (
-                <Typography
-                  key={i}
-                  style={
-                    i !== menuItems[currentMenuName].length - 1
-                      ? { marginBottom: 10 }
-                      : { marginBottom: 0 }
-                  }
-                >
-                  {item}
-                </Typography>
-              ))}
+              <Grid
+                item
+                className={classes.menuItemsWrap}
+                style={{ marginRight: 40 }}
+              >
+                {Object.keys(menuItems[menuNameIdx]).map((item, i) => (
+                  <Link
+                    underline="none"
+                    className={classes.linkStyle}
+                    onMouseOver={(
+                      event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+                    ) => {
+                      event.preventDefault();
+                      getItemsOfMainMenu(item);
+                    }}
+                  >
+                    <Typography
+                      key={i}
+                      style={
+                        i !== Object.keys(menuItems[menuNameIdx]).length - 1
+                          ? { marginBottom: 10 }
+                          : { marginBottom: 0 }
+                      }
+                      color={itemsOfMenu === item ? "primary" : "initial"}
+                    >
+                      {item}
+                    </Typography>
+                  </Link>
+                ))}
+              </Grid>
+              {openMenuItem && (
+                <Grid item xs={6} className={classes.menuItemsWrap}>
+                  {menuItems[menuNameIdx][itemsOfMenu].map(
+                    (item: string, i: number) => {
+                      if (item !== "") {
+                        return (
+                          <Link underline="none" className={classes.linkStyle}>
+                            <Typography key={i} style={{ marginBottom: 10 }}>
+                              {item}
+                            </Typography>
+                          </Link>
+                        );
+                      }
+                    }
+                  )}
+                </Grid>
+              )}
             </Grid>
 
             <Grid container style={{ height: 500 }} item xs={4}>
               <Box style={{ position: "relative", width: "100%" }}>
-                <Box
-                  style={{
-                    position: "absolute",
-                    top: 10,
-                    right: 10,
-                    zIndex: 1000,
-                  }}
-                >
+                <Box className={classes.crossPosition}>
                   <IconButton
                     color="primary"
                     classes={{ root: classes.closeButton }}
@@ -209,7 +266,7 @@ const Navbar: FC<NavbarProps> = ({ type }) => {
                     right: 0,
                   }}
                   alt="Menu"
-                  src={`/images/menu/${menuPicPaths[currentMenuName]}`}
+                  src={`/images/menu/${menuPicPaths[menuNameIdx]}`}
                 />
               </Box>
             </Grid>
