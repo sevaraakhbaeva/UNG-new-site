@@ -1,7 +1,7 @@
 import { Typography, Grid } from "@material-ui/core";
 import React, { FC, ReactNode, CSSProperties } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { IconButton } from "@material-ui/core";
+import { Link } from "@material-ui/core";
 
 export interface IconWithTextProps {
   Icon: ReactNode;
@@ -9,7 +9,7 @@ export interface IconWithTextProps {
   style?: CSSProperties;
   textStyle?: CSSProperties;
   reverse?: boolean;
-  withFunction?: boolean;
+  onClickHandler?: any;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -25,14 +25,8 @@ const IconWithText: FC<IconWithTextProps> = ({
   style,
   reverse,
   textStyle,
-  withFunction,
 }) => {
   const classes = useStyles(reverse);
-  const iconComponent = withFunction ? (
-    <IconButton>{Icon}</IconButton>
-  ) : (
-    <>{Icon}</>
-  );
 
   return (
     <Grid
@@ -44,7 +38,7 @@ const IconWithText: FC<IconWithTextProps> = ({
         ...style,
       }}
     >
-      <Grid item>{iconComponent}</Grid>
+      <Grid item>{Icon}</Grid>
       <Grid item>
         <Typography style={{ ...textStyle }} className={classes.textStyle}>
           {text}
@@ -59,7 +53,6 @@ IconWithText.defaultProps = {
   style: {},
   reverse: false,
   textStyle: {},
-  withFunction: false,
 };
 
 export default IconWithText;
