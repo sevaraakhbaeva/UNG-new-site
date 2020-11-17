@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Box, Grid, InputBase, Button } from "@material-ui/core";
 
@@ -25,12 +25,17 @@ const useStyles = makeStyles({
     paddingLeft: 10,
     paddingRight: 10,
   },
+  containerPosition: {
+    // position: "absolute",
+    width: "90%",
+    margin: "0 auto",
+  },
 });
 
 const SearchBlock = () => {
   const classes = useStyles();
   return (
-    <Box style={{ width: "90%", margin: "0 auto" }}>
+    <Box className={classes.containerPosition}>
       <Grid container alignItems="center">
         <Box component="form" className={classes.searchForm}>
           <GraySearchIcon />

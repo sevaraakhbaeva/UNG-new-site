@@ -3,18 +3,20 @@ import { Box, Grid } from "@material-ui/core";
 
 interface IconInCircleProps {
   Icon: ReactNode;
+  scale?: number;
+  borderWidth?: number;
 }
 
-const IconInCircle: FC<IconInCircleProps> = ({ Icon }) => {
+const IconInCircle: FC<IconInCircleProps> = ({ Icon, scale, borderWidth }) => {
   return (
     <Box
       borderRadius="50%"
-      border={4}
+      border={borderWidth}
       borderColor="#03A3DF"
       style={{
         display: "inline-block",
-        width: 150,
-        height: 150,
+        width: scale,
+        height: scale,
       }}
     >
       <Grid
@@ -27,6 +29,11 @@ const IconInCircle: FC<IconInCircleProps> = ({ Icon }) => {
       </Grid>
     </Box>
   );
+};
+
+IconInCircle.defaultProps = {
+  scale: 150,
+  borderWidth: 4,
 };
 
 export default IconInCircle;

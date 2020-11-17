@@ -9,7 +9,7 @@ import Partners from "./Partners";
 import Table from "./Table";
 import Map from "./Map";
 
-const Main = () => {
+const MainContainer = () => {
   return (
     <>
       <Slider />
@@ -28,4 +28,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default MainContainer;

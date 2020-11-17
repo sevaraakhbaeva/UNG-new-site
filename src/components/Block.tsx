@@ -6,6 +6,7 @@ interface BlockProps {
   children: ReactElement<any, string> | ReactNodeArray;
   style?: CSSProperties;
   withBackground?: boolean;
+  withOrnament?: boolean;
 }
 
 const useStyles = makeStyles({
@@ -15,13 +16,27 @@ const useStyles = makeStyles({
   },
 });
 
-const Block: FC<BlockProps> = ({ children, style, withBackground }) => {
-  const classes = useStyles({ withBackground: withBackground });
+const Block: FC<BlockProps> = ({
+  children,
+  style,
+  withBackground,
+  withOrnament,
+}) => {
+  const classes = useStyles();
+  const ornamentStyles = withOrnament
+    ? {
+        backgroundImage: "url(/images/UNGBrand.png)",
+        backgroundRepeat: "repeat-y",
+        width: "100%",
+        minHeight: 100,
+      }
+    : {};
   return (
     <Box
       style={{
         width: "100%",
         background: withBackground ? "#FAFAFA" : "",
+        ...ornamentStyles,
       }}
     >
       <Container className={classes.container} style={{ ...style }}>
@@ -34,6 +49,7 @@ const Block: FC<BlockProps> = ({ children, style, withBackground }) => {
 Block.defaultProps = {
   style: {},
   withBackground: false,
+  withOrnament: false,
 };
 
 export default Block;

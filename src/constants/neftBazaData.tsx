@@ -1,0 +1,107 @@
+export const neftBazaData = {
+  "Taxiatosh neft baza": {
+    products: [
+      "Benzin AI-80",
+      "Benzin AI-91",
+      "Benzin AI-92",
+      "Benzin AI-95",
+      "Dizel yoqilg'isi",
+      "Dizel moyi",
+      "Industrial moyal",
+      "Pech yonilgisi",
+    ],
+    locationImages: [
+      "Taxiatosh/img1.jpg",
+      "Taxiatosh/img2.jpg",
+      "Taxiatosh/img3.jpeg",
+    ],
+    workerInfo: [
+      {
+        name: "Абдимуратов Ерлан Ахмедович",
+        position: "Директор",
+        phoneNumber: "(61) 224-97-78",
+        freeHours: "Душанба 9:00 - 11:30",
+        address:
+          "Коракалпогистон Республикаси, Тахиатош тумани, Коракалпогис-тоннынг 50 йиллиги 5 уй.",
+        email: "t-tashnbmshj@inbox.uz",
+        trustNumber: "(61) 224-97-78",
+        picUrl: "Taxiatosh/workers/img1.png",
+      },
+      {
+        name: "Жуманиязов Рустам Омарович",
+        position: "Молия ва иқтисодий масалалар бўйича директор ўринбосари",
+        phoneNumber: "(61) 224-97-78",
+        freeHours: "Пайшанба 9:00 - 11:30",
+        address:
+          "Коракалпогистон Республикаси, Тахиатош тумани, Коракалпогис-тоннынг 50 йиллиги 5 уй.",
+        email: "t-tashnbmshj@inbox.uz",
+        trustNumber: "(61) 224-97-78",
+        picUrl: "Taxiatosh/workers/img2.png",
+      },
+      {
+        name: "Бабаназаров Пазылбек Алламбергенович",
+        position: "Ишлаб чиқариш бўйича директор (Бош муҳандис) ўринбосари",
+        phoneNumber: "(61) 224-97-78",
+        freeHours: "Жума 9:00 - 11:30",
+        address:
+          "Коракалпогистон Республикаси, Тахиатош тумани, Коракалпогис-тоннынг 50 йиллиги 5 уй.",
+        email: "t-tashnbmshj@inbox.uz",
+        trustNumber: "(61) 224-97-78",
+        picUrl: "Taxiatosh/workers/img3.png",
+      },
+      {
+        name: "Каньязов Даулетнияз Султамуратович",
+        position: "Чимбой филиали директори",
+        phoneNumber: "(61) 444-04-66",
+        freeHours: "Душанба 9:00 - 11:30",
+        address: "Қорақолпоғистон Республикаси Чимбой тумани Қ.Ауезов ОФЙ",
+        email: "fil_shimbaynb@inbox.uz	",
+        trustNumber: "(61) 444-04-66",
+        picUrl: "Taxiatosh/workers/img4.png",
+      },
+      {
+        name: "Абдимуратов Ерлан Ахмедович",
+        position: "Директор",
+        phoneNumber: "(61) 224-97-78",
+        freeHours: "Душанба 9:00 - 11:30",
+        address:
+          "Коракалпогистон Республикаси, Тахиатош тумани, Коракалпогис-тоннынг 50 йиллиги 5 уй.",
+        email: "t-tashnbmshj@inbox.uz",
+        trustNumber: "(61) 224-97-78",
+        picUrl: "Taxiatosh/workers/img1.png",
+      },
+      {
+        name: "Жуманиязов Рустам Омарович",
+        position: "Молия ва иқтисодий масалалар бўйича директор ўринбосари",
+        phoneNumber: "(61) 224-97-78",
+        freeHours: "Пайшанба 9:00 - 11:30",
+        address:
+          "Коракалпогистон Республикаси, Тахиатош тумани, Коракалпогис-тоннынг 50 йиллиги 5 уй.",
+        email: "t-tashnbmshj@inbox.uz",
+        trustNumber: "(61) 224-97-78",
+        picUrl: "Taxiatosh/workers/img2.png",
+      },
+      {
+        name: "Бабаназаров Пазылбек Алламбергенович",
+        position: "Ишлаб чиқариш бўйича директор (Бош муҳандис) ўринбосари",
+        phoneNumber: "(61) 224-97-78",
+        freeHours: "Жума 9:00 - 11:30",
+        address:
+          "Коракалпогистон Республикаси, Тахиатош тумани, Коракалпогис-тоннынг 50 йиллиги 5 уй.",
+        email: "t-tashnbmshj@inbox.uz",
+        trustNumber: "(61) 224-97-78",
+        picUrl: "Taxiatosh/workers/img3.png",
+      },
+      {
+        name: "Каньязов Даулетнияз Султамуратович",
+        position: "Чимбой филиали директори",
+        phoneNumber: "(61) 444-04-66",
+        freeHours: "Душанба 9:00 - 11:30",
+        address: "Қорақолпоғистон Республикаси Чимбой тумани Қ.Ауезов ОФЙ",
+        email: "fil_shimbaynb@inbox.uz	",
+        trustNumber: "(61) 444-04-66",
+        picUrl: "Taxiatosh/workers/img4.png",
+      },
+    ],
+  },
+};

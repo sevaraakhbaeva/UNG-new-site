@@ -1,9 +1,11 @@
 import React, { FC, ReactNode } from "react";
 import { Divider, Typography, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { TypographyProps } from "@material-ui/core/Typography";
 
-interface TitleProps {
+interface TitleProps extends TypographyProps {
   children: ReactNode;
+  textStyle?: React.CSSProperties;
   // any other props that come into the component
 }
 
@@ -16,14 +18,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Title: FC<TitleProps> = ({ children }) => {
+const Title: FC<TitleProps> = ({ children, textStyle, variant }) => {
   const classes = useStyles();
   return (
     <Box style={{ marginBottom: "30px" }}>
-      <Typography variant="h3">{children}</Typography>
+      <Typography style={{ ...textStyle }} variant={variant}>
+        {children}
+      </Typography>
       <Divider classes={{ root: classes.dividerStyle }} />
     </Box>
   );
 };
-
+Title.defaultProps = {
+  textStyle: {},
+  variant: "h3",
+};
 export default Title;

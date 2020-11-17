@@ -1,5 +1,12 @@
 import React from "react";
-import { Grid, Typography, Box, IconButton } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Box,
+  IconButton,
+  TextField,
+  FormControl,
+} from "@material-ui/core";
 import Block from "./Block";
 import { ReactComponent as TwitterIcon } from "../icons/Social/twitter.svg";
 import { ReactComponent as FacebookIcon } from "../icons/Social/facebook.svg";
@@ -8,8 +15,16 @@ import { ReactComponent as TelegramIcon } from "../icons/Social/telegram.svg";
 import { ReactComponent as VkIcon } from "../icons/Social/vk.svg";
 import { ReactComponent as YoutubeIcon } from "../icons/Social/youtube.svg";
 import { ReactComponent as LinkedInIcon } from "../icons/Social/linkedin.svg";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "./Button";
+
+const useStyles = makeStyles({
+  typographyMargin: { marginBottom: "15px" },
+  zeroMargin: { margin: 0 },
+});
 
 const Footer = () => {
+  const classes = useStyles();
   return (
     <Block withBackground>
       <Grid direction="column" container>
@@ -39,7 +54,7 @@ const Footer = () => {
             <Typography
               color="primary"
               variant="h5"
-              style={{ marginBottom: "15px" }}
+              className={classes.typographyMargin}
             >
               Bog’lanish uchun ma’lumotlar:
             </Typography>
@@ -67,9 +82,9 @@ const Footer = () => {
             </Typography>
           </Grid>
         </Grid>
-        <Grid item container>
+        <Grid item container style={{ marginBottom: "20px" }}>
           <Grid item xs={12} md={6}>
-            <Typography variant="h5" style={{ marginBottom: "15px" }}>
+            <Typography variant="h5" className={classes.typographyMargin}>
               Ish tartibi:
             </Typography>{" "}
             <Typography>
@@ -92,7 +107,7 @@ const Footer = () => {
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography variant="h5" style={{ marginBottom: "15px" }}>
+            <Typography variant="h5" className={classes.typographyMargin}>
               Bizni ijtimoiy tarmoqlarda kuzatib boring
             </Typography>
             <Box>
@@ -119,6 +134,22 @@ const Footer = () => {
               </IconButton>
             </Box>
           </Grid>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h5" className={classes.typographyMargin}>
+            Подписаться на наши обновления
+          </Typography>
+          <FormControl fullWidth>
+            <Grid container alignItems="flex-end">
+              <TextField
+                id="standard-basic"
+                label="Введите ваш e-mail"
+                style={{ marginRight: 10, width: "50%", maxWidth: 300 }}
+                InputLabelProps={{ style: { margin: 0, fontSize: 16 } }}
+              />
+              <Button square>Подписаться</Button>
+            </Grid>
+          </FormControl>
         </Grid>
       </Grid>
     </Block>

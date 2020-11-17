@@ -12,20 +12,22 @@ const useStyles = makeStyles({
     transform: "translateY(-50%)",
     zIndex: 99,
   },
-  iconStyle: {
+  iconStyle: (props: any) => ({
     backgroundColor: "#FAFAFA",
     opacity: "30%",
+    padding: props.smallButton ? "6px" : "12px",
     "&:hover": {
       backgroundColor: "#FAFAFA",
       opacity: "50%",
     },
-  },
+  }),
 });
 export interface ArrowProps {
   direction: "right" | "left";
   onClick?: any;
   style?: CSSProperties;
   withoutMargin?: boolean;
+  smallButton?: boolean;
 }
 
 const Arrow: FC<ArrowProps> = ({
@@ -33,17 +35,17 @@ const Arrow: FC<ArrowProps> = ({
   onClick,
   style,
   withoutMargin,
+  smallButton,
 }) => {
-  const classes = useStyles();
+  const classes = useStyles({ smallButton: smallButton });
   const ArrowIcon = direction === "left" ? <LeftArrow /> : <RightArrow />;
   let arrowStyle: object;
   if (withoutMargin) {
-    arrowStyle = direction === "left" ? { left: 0 } : { right: 0 };
+    arrowStyle = direction === "left" ? { left: 4 } : { right: 4 };
   } else {
     arrowStyle = direction === "left" ? { left: "25px" } : { right: "25px" };
   }
 
-  console.log(style);
   return (
     <Box className={classes.positionArrow} style={{ ...arrowStyle, ...style }}>
       <IconButton classes={{ root: classes.iconStyle }} onClick={onClick}>
@@ -56,6 +58,7 @@ const Arrow: FC<ArrowProps> = ({
 Arrow.defaultProps = {
   style: {},
   withoutMargin: false,
+  smallButton: false,
 };
 
 export default Arrow;

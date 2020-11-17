@@ -9,8 +9,6 @@ import {
   Paper,
   Link,
   IconButton,
-  InputBase,
-  Button,
   Hidden,
   Drawer,
   List,
@@ -37,6 +35,8 @@ import DisabilitiesBlock from "./DisabilitiesBlock";
 
 import { menuItems, menuPicPaths } from "../constants/menu";
 
+import { Link as RouterLink } from "react-router-dom";
+
 export interface NavbarProps {
   type?: "white" | "transparent";
 }
@@ -51,11 +51,13 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 48,
   },
   menuStylePosition: {
-    marginTop: "99px",
+    zIndex: 1500,
+    position: "absolute",
+    left: "50%",
+    transform: "translateX(-50%)",
     backgroundImage: "url(/images/UNGBrand.png)",
     backgroundRepeat: "no-repeat",
     width: "85%",
-    margin: "0 auto",
   },
   linkStyle: {
     color: "black",
@@ -195,6 +197,7 @@ const Navbar: FC<NavbarProps> = ({ type }) => {
     <>
       <AppBar
         elevation={0}
+        position="static"
         style={{ backgroundColor: "white", color: "black" }}
       >
         <Toolbar className={classes.toolbarStyle}>
@@ -373,6 +376,7 @@ const Navbar: FC<NavbarProps> = ({ type }) => {
                     menuNameIdx={menuNameIdx}
                     itemsOfMenu={itemsOfMenu}
                     getItemsOfMainMenu={getItemsOfMainMenu}
+                    closeMenu={closeMenu}
                     style={
                       i !== Object.keys(menuItems[menuNameIdx]).length - 1
                         ? { marginBottom: 10 }
@@ -387,7 +391,11 @@ const Navbar: FC<NavbarProps> = ({ type }) => {
                     (item: string, i: number) => {
                       if (item !== "") {
                         return (
-                          <Link underline="none" className={classes.linkStyle}>
+                          <Link
+                            onClick={closeMenu}
+                            underline="none"
+                            className={classes.linkStyle}
+                          >
                             <Typography key={i} style={{ marginBottom: 10 }}>
                               {item}
                             </Typography>
@@ -436,6 +444,7 @@ interface menuLintItemsProps {
   menuNameIdx: string;
   itemsOfMenu: string;
   style: CSSProperties;
+  closeMenu: any;
 }
 
 const MenuLintItems: FC<menuLintItemsProps> = ({
@@ -443,24 +452,30 @@ const MenuLintItems: FC<menuLintItemsProps> = ({
   item,
   itemsOfMenu,
   style,
+  closeMenu,
 }) => {
   const classes = useStyles();
   return (
-    <Link
-      underline="none"
-      className={classes.linkStyle}
-      onMouseOver={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        event.preventDefault();
-        getItemsOfMainMenu(item);
-      }}
-    >
-      <Typography
-        style={{ ...style }}
-        color={itemsOfMenu === item ? "primary" : "initial"}
+    <RouterLink style={{ textDecoration: "none" }} to="/about/history">
+      <Link
+        underline="none"
+        className={classes.linkStyle}
+        onClick={closeMenu}
+        onMouseOver={(
+          event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+        ) => {
+          event.preventDefault();
+          getItemsOfMainMenu(item);
+        }}
       >
-        {item}
-      </Typography>
-    </Link>
+        <Typography
+          style={{ ...style }}
+          color={itemsOfMenu === item ? "primary" : "initial"}
+        >
+          {item}
+        </Typography>
+      </Link>
+    </RouterLink>
   );
 };
 

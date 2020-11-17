@@ -1,7 +1,6 @@
 import { Typography, Grid } from "@material-ui/core";
 import React, { FC, ReactNode, CSSProperties } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "@material-ui/core";
 
 export interface IconWithTextProps {
   Icon: ReactNode;
