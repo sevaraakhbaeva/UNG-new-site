@@ -4,6 +4,7 @@ import Title from "./Title";
 import Block from "./Block";
 import { default as Card } from "./CusCard";
 import { default as Button } from "./Button";
+import { newsBriefInfo } from "../constants/newsInfo";
 
 const News = () => {
   return (
@@ -21,7 +22,7 @@ const News = () => {
               marginTop: "10px",
             }}
           >
-            <Card />
+            <Card newsInfo={newsBriefInfo[el]} />
           </Grid>
         ))}
       </Grid>

@@ -5,11 +5,25 @@ import React, { useEffect } from "react";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import MainContainer from "./components/MainContainer";
 import Navbar from "./components/Navbar";
+// import Navbar from "./components/navbar/index";
 import Footer from "./components/Footer";
 import HistoryContainer from "./components/HistoryContainer";
 import StructSubContainer from "./components/StructSubContainer";
 import NeftBazaContainer from "./components/NeftBazaContainer";
 import ManagementContainer from "./components/ManagementContainer";
+import NewsContainer from "./components/NewsContainer";
+import NewsDetailContainer from "./components/NewsDetailContainer";
+import ContactsContainer from "./components/ContactsContainer";
+import AnnouncementContainer from "./components/AnnouncementContainer";
+import LocalizationContainer from "./components/LocalizationContainer";
+import FAQContainer from "./components/FAQContainer";
+import ProductsContainer from "./components/ProductsContainer";
+import PagesWithFilesContainer from "./components/PagesWithFilesContainer";
+import {
+  titleOfTransparentData,
+  transparentDataList,
+} from "./constants/transparentData";
+import { titleOfLocalization, listOfFiles } from "./constants/localizationData";
 
 import {
   BrowserRouter as Router,
@@ -81,6 +95,8 @@ function App() {
             <Route exact path="/">
               <MainContainer />
             </Route>
+
+            {/* ===================== ABOUT ===================== */}
             <Route path="/about/history">
               <HistoryContainer />
             </Route>
@@ -97,7 +113,17 @@ function App() {
             <Route path="/about/management">
               <ManagementContainer />
             </Route>
+            <Route path="/about/contacts">
+              <ContactsContainer />
+            </Route>
+            <Route path="/about/faq">
+              <FAQContainer />
+            </Route>
 
+            {/* ===================== BUSINESS ===================== */}
+            <Route path="/business/products">
+              <ProductsContainer />
+            </Route>
             <Route path="/business/tender/:id/:tenderId">
               <TenderDetailContainer />
             </Route>
@@ -106,6 +132,37 @@ function App() {
             </Route>
             <Route path="/business/tender">
               <Redirect to="/business/tender/1" />
+            </Route>
+            <Route path="/business/localization/:id">
+              <PagesWithFilesContainer
+                filesInfo={listOfFiles}
+                submenus={titleOfLocalization}
+                title="Маҳаллийлаштириш"
+                breadCrumbsTitle={["Бизнесга оид"]}
+                url="/business/localization"
+              />
+            </Route>
+
+            {/* ===================== NEWS ===================== */}
+            {/* <Route path="/yangiliklar/:id">
+              <NewsDetailContainer />
+            </Route> */}
+            <Route path="/news">
+              <NewsContainer />
+            </Route>
+
+            {/* ===================== SHAREHOLDERS ===================== */}
+            <Route path="/shareholders/announcements">
+              <AnnouncementContainer />
+            </Route>
+            <Route path="/shareholders/open/:id">
+              <PagesWithFilesContainer
+                filesInfo={transparentDataList}
+                submenus={titleOfTransparentData}
+                title="Ошкоралик маълумотлар"
+                breadCrumbsTitle={["Акциядор ва инвесторлар"]}
+                url="/shareholders/open"
+              />
             </Route>
           </Switch>
 

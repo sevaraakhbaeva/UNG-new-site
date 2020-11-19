@@ -171,8 +171,11 @@ const Navbar: FC<NavbarProps> = ({ type }) => {
   };
 
   const toggleMenu = (item: string) => {
-    if (menuNameIdx === item) closeMenu();
-    else setMenuNameIdx(item);
+    if (menuNameIdx === item) {
+      closeMenu();
+    } else {
+      setMenuNameIdx(item);
+    }
 
     setItemsOfMenu("");
   };
@@ -294,7 +297,7 @@ const Navbar: FC<NavbarProps> = ({ type }) => {
                 justify="space-between"
               >
                 {Object.keys(menuItems).map((item: string) => (
-                  <Grid key={item} item>
+                  <Grid key={item} item={true}>
                     <Link
                       underline="none"
                       onClick={(
@@ -315,7 +318,7 @@ const Navbar: FC<NavbarProps> = ({ type }) => {
                           )
                         }
                         text={item}
-                        reverse
+                        reverse={true}
                       />
                     </Link>
                   </Grid>
@@ -412,7 +415,7 @@ const Navbar: FC<NavbarProps> = ({ type }) => {
               <Box style={{ position: "relative", width: "100%" }}>
                 <Box className={classes.crossPosition}>
                   <IconButton
-                    color="primary"
+                    // color="primary"
                     classes={{ root: classes.closeButton }}
                     onClick={closeMenu}
                   >
@@ -461,7 +464,7 @@ const MenuLintItems: FC<menuLintItemsProps> = ({
         underline="none"
         className={classes.linkStyle}
         onClick={closeMenu}
-        onMouseOver={(
+        onMouseEnter={(
           event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
         ) => {
           event.preventDefault();

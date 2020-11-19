@@ -46,7 +46,12 @@ const TenderContainer = () => {
           ))}
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <SideMenu listOfMenu={tenderCategories} activeId={id} />
+          <SideMenu
+            url="/business/tender"
+            title="Tenderlar"
+            listOfMenu={tenderCategories}
+            activeId={id}
+          />
         </Grid>
       </Grid>
     </BlockLayout>

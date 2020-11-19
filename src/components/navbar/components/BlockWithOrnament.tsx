@@ -1,10 +1,10 @@
-import React, { FC, ReactElement, ReactNodeArray } from "react";
+import React, { FC, ReactElement, ReactNodeArray, ReactNode } from "react";
 import { IconButton, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { ReactComponent as CloseIcon } from "../icons/cross.svg";
+import { ReactComponent as CloseIcon } from "../../../icons/cross.svg";
 
 interface BlockProps {
-  children: ReactElement<any, string> | ReactNodeArray;
+  children: ReactElement<any, string> | ReactNodeArray | ReactNode;
   closeBlock: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
@@ -24,7 +24,6 @@ const useStyles = makeStyles({
     height: 40,
     marginLeft: 10,
   },
-  closeButtonPosition: { position: "absolute", top: 10, right: 10 },
 });
 
 const Block: FC<BlockProps> = ({ children, closeBlock }) => {
@@ -32,7 +31,7 @@ const Block: FC<BlockProps> = ({ children, closeBlock }) => {
   return (
     <Box className={classes.blockBack}>
       {children}
-      <Box className={classes.closeButtonPosition}>
+      <Box style={{ position: "absolute", top: 5, right: 5 }}>
         <IconButton
           // color="primary"
           classes={{ root: classes.closeSearchButton }}

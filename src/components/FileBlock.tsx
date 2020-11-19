@@ -9,6 +9,8 @@ import { ReactComponent as ReferenceIcon } from "../icons/files/reference.svg";
 import { ReactComponent as WebIcon } from "../icons/files/www.svg";
 import { ReactComponent as ZipIcon } from "../icons/files/zip.svg";
 import { ReactComponent as MemoryIcon } from "../icons/files/memory.svg";
+import { ReactComponent as PptIcon } from "../icons/files/ppt.svg";
+import { ReactComponent as UngIcon } from "../icons/files/ung.svg";
 import { CSSProperties, makeStyles } from "@material-ui/styles";
 import IconInCircle from "./IconInCircle";
 import IconWithText from "./IconWithText";
@@ -40,17 +42,21 @@ const icons: {
   };
 } = {
   exarid: { icon: <ExaridIcon />, name: "" },
+  ung: { icon: <UngIcon />, name: "" },
   excel: { icon: <ExcelIcon />, name: "XLS" },
   pdf: { icon: <PdfIcon />, name: "PDF" },
   word: { icon: <WordIcon />, name: "DOC" },
   zip: { icon: <ZipIcon />, name: "ZIP" },
+  ppt: { icon: <PptIcon />, name: "PPT" },
 };
 
 const FileBlock: FC<FileBlockProps> = ({ fileInfo, style }) => {
   const classes = useStyles();
   const typeOfFile: string = fileInfo.extension;
+  const isDownload = typeOfFile !== "exarid" && typeOfFile !== "ung";
+
   return (
-    <Paper>
+    <Paper elevation={3}>
       <Box style={{ ...style }} className={classes.blockStruct}>
         <Box className={classes.textUnderIcon}>
           {icons[typeOfFile].icon}
@@ -58,19 +64,30 @@ const FileBlock: FC<FileBlockProps> = ({ fileInfo, style }) => {
             {icons[typeOfFile].name}
           </Typography>
         </Box>
-        <Box mx={3}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          mx={3}
+        >
           <Typography variant="h5">{fileInfo.name}</Typography>
           <Typography>{fileInfo.description}</Typography>
-          <Box>
-            <IconWithText
-              Icon={<MemoryIcon />}
-              text={`Hajimi: ${fileInfo.size}`}
-              textStyle={{ fontSize: 14, color: "#999999" }}
-            />
-          </Box>
+          {isDownload && (
+            <Box>
+              <IconWithText
+                Icon={<MemoryIcon />}
+                text={`Hajimi: ${fileInfo.size}`}
+                textStyle={{ fontSize: 14, color: "#999999" }}
+              />
+            </Box>
+          )}
         </Box>
         <Box className={classes.iconAtEnd}>
-          <IconInCircle scale={60} borderWidth={2} Icon={<DownloadIcon />} />
+          {isDownload ? (
+            <IconInCircle scale={55} borderWidth={2} Icon={<DownloadIcon />} />
+          ) : (
+            <ReferenceIcon />
+          )}
         </Box>
       </Box>
     </Paper>

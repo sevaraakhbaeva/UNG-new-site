@@ -3,11 +3,13 @@ import { Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Title from "./Title";
 import Link from "./CusLink";
-import { tenderCategoriesType } from "../constants/tenderCompanies";
+import { Link as RouterLink } from "react-router-dom";
 
 interface SideMenuProps {
-  listOfMenu: tenderCategoriesType;
+  listOfMenu: { [index: number]: string };
   activeId: string;
+  title: string;
+  url: string;
 }
 
 const useStyles = makeStyles({
@@ -16,18 +18,20 @@ const useStyles = makeStyles({
   },
 });
 
-const SideMenu: FC<SideMenuProps> = ({ listOfMenu, activeId }) => {
+const SideMenu: FC<SideMenuProps> = ({ listOfMenu, activeId, title, url }) => {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.paperStyle}>
-      <Title variant="h4">Tenderlar</Title>
+    <Paper elevation={3} className={classes.paperStyle}>
+      <Title variant="h4">{title}</Title>
       {Object.entries(listOfMenu).map((item: any) => (
-        <Link>
-          <Typography color={activeId === item[0] ? "primary" : "initial"}>
-            {item[1]}
-          </Typography>
-        </Link>
+        <RouterLink style={{ textDecoration: "none" }} to={`${url}/${item[0]}`}>
+          <Link>
+            <Typography color={activeId === item[0] ? "primary" : "initial"}>
+              {item[1]}
+            </Typography>
+          </Link>
+        </RouterLink>
       ))}
     </Paper>
   );
