@@ -1,10 +1,11 @@
 import React from "react";
-import { structSubData } from "../constants/subStructData";
+import { structSubData, midUrl } from "../constants/subStructData";
 import { Typography, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
 import StructuralBlock from "./StructuralBlock";
 import BlockLayout from "./BlockLayout";
+import { useRouteMatch } from "react-router-dom";
 
 const useStyles = makeStyles({
   gridContainer: {
@@ -20,6 +21,8 @@ const useStyles = makeStyles({
 
 const StructSubContainer = () => {
   const classes = useStyles();
+  let { url } = useRouteMatch();
+
   return (
     <BlockLayout
       title="Tizim tarkibiga kiruvchi jamiyatlar"
@@ -29,17 +32,18 @@ const StructSubContainer = () => {
         "Tizim tarkibiga kiruvchi jamiyatlar",
       ]}
     >
-      {structSubData.map((divisionBlock: any) => (
+      {structSubData.map((divisionBlock) => (
         <Box style={{ marginBottom: 40 }}>
           <Typography variant="h4" style={{ marginBottom: 40 }} color="primary">
             {divisionBlock.title}
           </Typography>
           <Box className={classes.gridContainer}>
-            {divisionBlock.data.map((dataItem: string) => (
+            {divisionBlock.data.map((dataItem) => (
               <Box className={classes.gridItem}>
                 <StructuralBlock
-                  title={dataItem}
+                  dataItem={dataItem}
                   picName={divisionBlock.imgName}
+                  parentUrl={url + midUrl[divisionBlock.id]}
                 />
               </Box>
             ))}

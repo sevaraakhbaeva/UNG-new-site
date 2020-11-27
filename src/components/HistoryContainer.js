@@ -1,6 +1,5 @@
 import React from "react";
-import Title from "./Title";
-import Block from "./Block";
+import BlockLayout from "./BlockLayout";
 import TextWithPics from "./TextWithPics";
 
 import { Typography, Breadcrumbs } from "@material-ui/core";
@@ -9,14 +8,10 @@ import LastChangesText from "./LastChangesText";
 
 const MainContainer = () => {
   return (
-    <Block withBackground withOrnament style={{ padding: "20px 60px" }}>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Typography>Bosh sahifa</Typography>
-        <Typography>Kompaniya haqida</Typography>
-        <Typography color="primary">Kompaniya tarixi</Typography>
-      </Breadcrumbs>
-      <Title>Kompaniya tarixi</Title>
-
+    <BlockLayout
+      title="Kompaniya tarixi"
+      breadcrumbNames={["Bosh sahifa", "Kompaniya haqida", "Kompaniya tarixi"]}
+    >
       <Paragraph title="Neft qazib olishdagi bir asrdan ortiq tajriba:">
         <Typography>
           Neftni sanoatlashgan tarzda qazib olish ishlari O‘zbekistonda 1885
@@ -388,10 +383,8 @@ const MainContainer = () => {
           </Typography>
         </TextWithPics>
       </Paragraph>
-      <LastChangesText>
-        Oxirgi o’zgartirilgan sana: 20-sentabr 2020
-      </LastChangesText>
-    </Block>
+      <LastChangesText>20-sentabr 2020</LastChangesText>
+    </BlockLayout>
   );
 };
 

@@ -33,6 +33,16 @@ const settings = {
   prevArrow: <Arrow smallButton direction="left" withoutMargin />,
 };
 
+const tableRows = {
+  name: "Имя",
+  position: "Позиция",
+  phoneNumber: "Номер телефона",
+  freeHours: "Дни приема",
+  address: "Юридический адрес общества",
+  email: "Адрес электронной почты",
+  trustNumber: "Номер «горячей линии»",
+};
+
 const NeftBazaContainer = () => {
   const classes = useStyles();
   const neftBazaItemInfo = neftBazaData["Taxiatosh neft baza"];
@@ -77,7 +87,11 @@ const NeftBazaContainer = () => {
       <Grid container spacing={3}>
         {neftBazaItemInfo.workerInfo.map((itemInfo) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
-            <ManCard workerData={itemInfo} />
+            <ManCard
+              tableRows={tableRows}
+              workerData={itemInfo}
+              picFolderUrl="/neftBaza"
+            />
           </Grid>
         ))}
       </Grid>

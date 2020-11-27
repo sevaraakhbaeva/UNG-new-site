@@ -2,29 +2,41 @@ import React from "react";
 import { Container, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   container: {
-    paddingTop: 50,
-    paddingBottom: 50,
+    padding: "20px 60px",
+    [theme.breakpoints.down("md")]: {
+      padding: "15px 40px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      padding: "10px 30px",
+    },
   },
-});
+  ornamentStyles: {
+    backgroundImage: "url(/images/UNGBrand.png)",
+    backgroundRepeat: "repeat-y",
+    width: "100%",
+    minHeight: 100,
+    "@media (max-width:1280px)": {
+      backgroundSize: 33,
+    },
+    "@media (max-width:960px)": {
+      backgroundSize: 24,
+    },
+    "@media (max-width:600px)": {
+      backgroundSize: 22,
+    },
+  },
+}));
 
 const Block = ({ children, style, withBackground, withOrnament }) => {
   const classes = useStyles();
-  const ornamentStyles = withOrnament
-    ? {
-        backgroundImage: "url(/images/UNGBrand.png)",
-        backgroundRepeat: "repeat-y",
-        width: "100%",
-        minHeight: 100,
-      }
-    : {};
   return (
     <Box
+      className={withOrnament ? classes.ornamentStyles : {}}
       style={{
         width: "100%",
-        background: withBackground ? "#FAFAFA" : "",
-        ...ornamentStyles,
+        backgroundColor: withBackground ? "#FAFAFA" : "",
       }}
     >
       <Container className={classes.container} style={{ ...style }}>

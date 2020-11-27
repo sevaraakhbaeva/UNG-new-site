@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/styles";
 
 import BlockLayout from "./BlockLayout";
 import FileBlock from "./FileBlock";
+import ListWithBulletPoint from "./ListWithBulletPoint";
 
 import { tenderDetail } from "../constants/tenderInfo";
 import { useParams } from "react-router-dom";
@@ -115,10 +116,11 @@ const TenderDetailContainer = () => {
         </Typography>
         <Divider className={classes.dividerColor} />
         <Box my={3}>
-          <div
+          <ListWithBulletPoint htmlString={tenderDetail.requirements} />
+          {/* <div
             className={classes.listStyles}
             dangerouslySetInnerHTML={{ __html: tenderDetail.requirements }}
-          />
+          /> */}
         </Box>
         <Box my={3}>
           <Typography variant="h4" color="primary">

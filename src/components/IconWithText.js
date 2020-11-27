@@ -6,6 +6,10 @@ const useStyles = makeStyles((theme) => ({
   textStyle: (reverse) => ({
     marginLeft: reverse ? "0px" : "5px",
     marginRight: reverse ? "5px" : "0px",
+    fontSize: 14,
+    [theme.breakpoints.up("xl")]: {
+      fontSize: 20,
+    },
   }),
 }));
 

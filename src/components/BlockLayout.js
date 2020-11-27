@@ -5,7 +5,7 @@ import { Typography, Breadcrumbs } from "@material-ui/core";
 
 const BlockLayout = ({ children, title, breadcrumbNames }) => {
   return (
-    <Block withBackground withOrnament style={{ padding: "20px 60px" }}>
+    <Block withBackground withOrnament>
       <Breadcrumbs aria-label="breadcrumb">
         {breadcrumbNames.map((name, i) => (
           <Typography

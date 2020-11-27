@@ -28,7 +28,6 @@ const Block = ({ children, closeBlock }) => {
       {children}
       <Box style={{ position: "absolute", top: 5, right: 5 }}>
         <IconButton
-          // color="primary"
           classes={{ root: classes.closeSearchButton }}
           onClick={closeBlock}
         >

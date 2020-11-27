@@ -6,7 +6,7 @@ const colors = {
   primary: "#03A3DF",
   secondary: "#777777",
   white: "#FFFFFF",
-  black: "#000000",
+  black: "#191919",
 };
 
 const useStyles = makeStyles({
@@ -29,6 +29,7 @@ const CusButton = ({
   style,
   square,
   thinBorder,
+  onButtonClick,
 }) => {
   const classes = useStyles({ isSquare: square, thinBorder: thinBorder });
   return (
@@ -36,6 +37,7 @@ const CusButton = ({
       className={classes.buttonContainer}
       style={{ color: colors[color], ...style }}
       variant={variant}
+      onClick={onButtonClick}
     >
       {/* <Typography variant="h5" align="center" component="span"> */}
       {children}
@@ -50,6 +52,7 @@ CusButton.defaultProps = {
   style: {},
   square: false,
   thinBorder: false,
+  onButtonClick: () => {},
 };
 
 export default CusButton;

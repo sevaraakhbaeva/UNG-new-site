@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Typography, Box } from "@material-ui/core";
 import BlockLayout from "./BlockLayout";
 import { makeStyles } from "@material-ui/core/styles";
+import UngMap from "./UngMap";
 
 const useStyles = makeStyles({
   dayBlockStyle: (props) => ({
@@ -94,7 +95,9 @@ const ContactsContainer = () => {
             ))}
           </Box>
         </Box>
-        <Box></Box>
+        <Box width="100%">
+          <UngMap />
+        </Box>
       </Grid>
     </BlockLayout>
   );

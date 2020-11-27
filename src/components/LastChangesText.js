@@ -8,7 +8,7 @@ const LastChangesText = ({ children, styles }) => {
       align="right"
       color="secondary"
     >
-      {children}
+      Oxirgi o’zgartirilgan sana: {children}
     </Typography>
   );
 };

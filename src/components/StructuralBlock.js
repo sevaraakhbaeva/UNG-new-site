@@ -1,6 +1,7 @@
 import React from "react";
 import { Paper, Typography, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles({
   paperBlock: (props) => ({
@@ -16,7 +17,25 @@ const useStyles = makeStyles({
   },
 });
 
-const StructuralBlock = ({ title, picName }) => {
+const StructuralBlock = ({ dataItem, picName, parentUrl }) => {
+  const isWithLink = Boolean(dataItem.link);
+  return (
+    <>
+      {isWithLink ? (
+        <RouterLink
+          style={{ textDecoration: "none" }}
+          to={parentUrl + dataItem.link}
+        >
+          <BlockWithoutLink title={dataItem.name} picName={picName} />
+        </RouterLink>
+      ) : (
+        <BlockWithoutLink title={dataItem.name} picName={picName} />
+      )}
+    </>
+  );
+};
+
+const BlockWithoutLink = ({ title, picName }) => {
   const classes = useStyles({ imagePath: picName });
   return (
     <Paper square className={classes.paperBlock}>
@@ -28,5 +47,4 @@ const StructuralBlock = ({ title, picName }) => {
     </Paper>
   );
 };
-
 export default StructuralBlock;

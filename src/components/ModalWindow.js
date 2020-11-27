@@ -67,17 +67,7 @@ const useStyles = makeStyles({
   },
 });
 
-const tableRows = [
-  "Имя",
-  "Позиция",
-  "Номер телефона",
-  "Дни приема",
-  "Юридический адрес общества",
-  "Адрес электронной почты",
-  "Номер «горячей линии»",
-];
-
-const ModalWindow = ({ handleClose, open, workerData }) => {
+const ModalWindow = ({ handleClose, open, workerData, tableRows }) => {
   const size = Object.keys(workerData).length;
 
   const classes = useStyles();
@@ -95,23 +85,20 @@ const ModalWindow = ({ handleClose, open, workerData }) => {
       <DialogContent dividers>
         <Table>
           <TableBody>
-            {Object.entries(workerData).map(
-              (item, i) =>
-                i !== size - 1 && (
-                  <TableRow>
-                    <TableCell
-                      className={classes.cellStyle}
-                      component="th"
-                      scope="row"
-                    >
-                      {tableRows[i]}
-                    </TableCell>
-                    <TableCell className={classes.cellStyle}>
-                      {item[1]}
-                    </TableCell>
-                  </TableRow>
-                )
-            )}
+            {Object.entries(tableRows).map((item) => (
+              <TableRow>
+                <TableCell
+                  className={classes.cellStyle}
+                  component="th"
+                  scope="row"
+                >
+                  {item[1]}
+                </TableCell>
+                <TableCell className={classes.cellStyle}>
+                  {workerData[item[0]]}
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </DialogContent>

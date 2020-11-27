@@ -6,10 +6,14 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   menuText: {
     fontWeight: "lighter",
+    margin: 0,
   },
   linkStyle: {
     color: "black",
     cursor: "pointer",
+  },
+  listMargin: {
+    margin: 0,
   },
 });
 
@@ -44,10 +48,10 @@ const IconWithMenu = ({ Icon, text, style, reverse, textStyle }) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem className={classes.listMargin} onClick={handleClose}>
           <Typography className={classes.menuText}>Ru</Typography>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem className={classes.listMargin} onClick={handleClose}>
           <Typography className={classes.menuText}>En</Typography>
         </MenuItem>
       </Menu>

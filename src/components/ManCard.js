@@ -15,13 +15,20 @@ const useStyles = makeStyles({
     marginTop: "10px",
     borderRadius: 0,
     height: "100%",
+    position: "relative",
+    maxWidth: 270,
   },
   titleStyle: {
     fontWeight: "lighter",
   },
 });
 
-const ManCard = ({ workerData }) => {
+const ManCard = ({
+  workerData,
+  withoutDetailInfo = false,
+  picFolderUrl,
+  tableRows,
+}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -33,16 +40,12 @@ const ManCard = ({ workerData }) => {
 
   return (
     <>
-      <Card
-        style={{ position: "relative" }}
-        className={classes.root}
-        elevation={3}
-      >
+      <Card className={classes.root} elevation={3}>
         <CardMedia title="Worker">
           <img
             alt="Worker"
             style={{ width: "100%" }}
-            src={`/images/neftBaza/${workerData.picUrl}`}
+            src={`/images${picFolderUrl}/${workerData.picUrl}`}
           />
         </CardMedia>
         <CardContent style={{ paddingLeft: "20px", paddingRight: "20px" }}>
@@ -58,22 +61,27 @@ const ManCard = ({ workerData }) => {
             {workerData.position}
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button
-            onClick={handleClickOpen}
-            variant="outlined"
-            fullWidth
-            color="primary"
-          >
-            Batafsil
-          </Button>
-        </CardActions>
+        {!withoutDetailInfo && (
+          <CardActions>
+            <Button
+              onClick={handleClickOpen}
+              variant="outlined"
+              fullWidth
+              color="primary"
+            >
+              Batafsil
+            </Button>
+          </CardActions>
+        )}
       </Card>
-      <ModalWindow
-        workerData={workerData}
-        handleClose={handleClose}
-        open={open}
-      />
+      {!withoutDetailInfo && (
+        <ModalWindow
+          workerData={workerData}
+          handleClose={handleClose}
+          open={open}
+          tableRows={tableRows}
+        />
+      )}
     </>
   );
 };

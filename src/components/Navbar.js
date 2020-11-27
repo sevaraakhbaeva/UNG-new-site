@@ -403,7 +403,6 @@ const Navbar = ({ type }) => {
               <Box style={{ position: "relative", width: "100%" }}>
                 <Box className={classes.crossPosition}>
                   <IconButton
-                    // color="primary"
                     classes={{ root: classes.closeButton }}
                     onClick={closeMenu}
                   >

@@ -1,11 +1,12 @@
 import React from "react";
-import { Grid, Link } from "@material-ui/core";
+import { Box, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { ReactComponent as VisionIcon } from "../../../icons/Vector.svg";
 import { ReactComponent as FileIcon } from "../../../icons/file-text.svg";
 import { ReactComponent as MapIcon } from "../../../icons/map.svg";
 import { ReactComponent as ArrowDownIcon } from "../../../icons/chevron-down.svg";
 import { ReactComponent as SearchIcon } from "../../../icons/search.svg";
+import { Link as RouterLink } from "react-router-dom";
 
 import IconWithText from "../../IconWithText";
 import IconWithMenu from "../../IconWithMenu";
@@ -18,87 +19,78 @@ const topMenuItems = [
     icon: <MapIcon />,
     text: "Korxonalar",
   },
-  {
-    icon: <ArrowDownIcon />,
-    text: "Uz",
-  },
 ];
 
 const useStyles = makeStyles({
+  root: {
+    height: "25px",
+    width: "100%",
+  },
   menuItem: {
     marginRight: 17,
   },
   linkStyle: {
     color: "black",
     cursor: "pointer",
-    "&:hover": {
-      color: "#03A3DF",
-    },
+  },
+  imageStart: {
+    marginRight: "auto",
   },
 });
 
-const logoImage = <img alt="UNG logo" src="/images/logo.png" width="150" />;
-const textStyleObj = { fontSize: 14 };
-
-const UpperNavbar = ({ setFunction }) => {
+const UpperNavbar = ({ changeCurrentBlock, closePaperMenu }) => {
   const classes = useStyles();
   return (
     <>
-      <Grid
-        style={{ height: "25px" }}
-        justify="flex-end"
-        container
+      <Box
+        className={classes.root}
+        display="flex"
         alignItems="center"
-        xs={10}
-        item
+        justifyContent="flex-end"
       >
-        <Grid item className={classes.menuItem}>
+        <Box justifySelf="flex-start" className={classes.imageStart}>
+          <RouterLink
+            onClick={closePaperMenu}
+            style={{ textDecoration: "none" }}
+            to="/"
+          >
+            <img alt="UNG logo" src="/images/logo.png" width="150" />
+          </RouterLink>
+        </Box>
+        <Box className={classes.menuItem}>
           <Link
-            underline="none"
-            style={{ color: "black", cursor: "pointer" }}
-            onClick={(event) => {
-              setFunction("disability");
+            onClick={() => {
+              changeCurrentBlock("disability");
             }}
+            underline="none"
+            className={classes.linkStyle}
           >
             <IconWithText
               Icon={<VisionIcon />}
               text="Imkoniyati cheklanganlar uchun"
-              textStyle={textStyleObj}
             />
           </Link>
-        </Grid>
-        {topMenuItems.map((item) => (
-          <Grid item className={classes.menuItem}>
-            {item.text !== "Uz" && (
-              <IconWithText
-                Icon={item.icon}
-                text={item.text}
-                textStyle={textStyleObj}
-              />
-            )}
-          </Grid>
+        </Box>
+        {topMenuItems.map((item, i) => (
+          <Box key={i} className={classes.menuItem}>
+            <IconWithText Icon={item.icon} text={item.text} />
+          </Box>
         ))}
-        <Grid item className={classes.menuItem}>
-          <IconWithMenu
-            Icon={topMenuItems[topMenuItems.length - 1].icon}
-            text={topMenuItems[topMenuItems.length - 1].text}
-            textStyle={textStyleObj}
-            reverse
-          />
-        </Grid>
-        <Grid item>
+        <Box className={classes.menuItem}>
+          <IconWithMenu Icon={<ArrowDownIcon />} text="Uz" reverse />
+        </Box>
+        <Box className={classes.menuItem}>
           <Link
             underline="none"
             className={classes.linkStyle}
-            onClick={(event) => {
-              event.preventDefault();
-              setFunction("search");
+            onClick={() => {
+              changeCurrentBlock("search");
             }}
           >
             <SearchIcon />
           </Link>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </>
   );
 };

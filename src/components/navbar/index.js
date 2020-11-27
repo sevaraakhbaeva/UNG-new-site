@@ -6,27 +6,53 @@ import UpperNavbar from "./components/UpperNavbar";
 import SearchBlock from "./components/SearchBlock";
 import DisabilitiesBlock from "./components/DisabilitiesBlock";
 import BlockWithOrnament from "./components/BlockWithOrnament";
+import MenuBar from "./components/MenuBar";
+import { menuItems } from "./constants/menuItems";
+import { find } from "ramda";
+import PaperMenu from "./components/PaperMenu";
 
-const useStyles = makeStyles((theme) => ({}));
-
-const findOpenedComponent = (openedBlock) => {
-  if (openedBlock === "disability") {
-    return <DisabilitiesBlock />;
-  } else if (openedBlock === "search") {
-    return <SearchBlock />;
-  }
-};
+const useStyles = makeStyles((theme) => ({
+  toolbarStyle: {
+    // padding: "0 100px",
+    borderBottom: "1px solid #CCCCCC",
+    minHeight: 48,
+  },
+}));
 
 const Navbar = ({ type }) => {
-  const [openedBlock, setOpenedBlock] = useState("");
-  const openChosenBlock = (chosenBlock) => {
-    setOpenedBlock(chosenBlock);
+  const classes = useStyles();
+
+  const [parentMenuSelected, setParentMenuSelected] = useState(0);
+  const handleParentMenuClick = (id) => {
+    if (parentMenuSelected !== id) {
+      setParentMenuSelected(id);
+    } else {
+      setParentMenuSelected(0);
+    }
   };
-  const closeChosenBlock = () => {
-    setOpenedBlock("");
+  const closePaperMenu = () => {
+    setParentMenuSelected(0);
   };
-  const openedComponent = findOpenedComponent(openedBlock);
-  const isAnyOpened = Boolean(openedBlock);
+  const isOpenPaperMenu = Boolean(parentMenuSelected);
+
+  const [currentBlock, setCurrentBlock] = useState("menu");
+  const changeCurrentBlock = (blockName) => {
+    if (currentBlock === blockName) {
+      setCurrentBlock("menu");
+    } else {
+      setCurrentBlock(blockName);
+      if (isOpenPaperMenu) closePaperMenu();
+    }
+  };
+  const closeCurrentBlock = () => {
+    setCurrentBlock("menu");
+  };
+
+  const parentMenuList = find(
+    (item) => item.id === parentMenuSelected,
+    menuItems
+  );
+
   return (
     <>
       <AppBar
@@ -34,16 +60,40 @@ const Navbar = ({ type }) => {
         position="static"
         style={{ backgroundColor: "white", color: "black" }}
       >
-        <Toolbar>
-          <UpperNavbar setFunction={openChosenBlock} />
-          <Divider />
+        <Toolbar className={classes.toolbarStyle}>
+          <UpperNavbar
+            changeCurrentBlock={changeCurrentBlock}
+            closePaperMenu={closePaperMenu}
+          />
         </Toolbar>
-        {!isAnyOpened && (
-          <BlockWithOrnament closeBlock={closeChosenBlock}>
-            {openedComponent}
+        {currentBlock === "menu" && (
+          <Toolbar className={classes.toolbarStyle}>
+            <MenuBar
+              handleParentMenuClick={handleParentMenuClick}
+              parentMenuSelected={parentMenuSelected}
+              menuItems={menuItems}
+            />
+          </Toolbar>
+        )}
+        {currentBlock === "disability" && (
+          <BlockWithOrnament closeBlock={closeCurrentBlock}>
+            <DisabilitiesBlock />
+          </BlockWithOrnament>
+        )}
+        {currentBlock === "search" && (
+          <BlockWithOrnament closeBlock={closeCurrentBlock}>
+            <SearchBlock />
           </BlockWithOrnament>
         )}
       </AppBar>
+      {isOpenPaperMenu && (
+        <PaperMenu
+          parentUrl={parentMenuList.url}
+          parentMenuList={parentMenuList.children}
+          closePaperMenu={closePaperMenu}
+          parentId={parentMenuList.id}
+        />
+      )}
     </>
   );
 };
