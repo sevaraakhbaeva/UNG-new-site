@@ -17,11 +17,10 @@ const useStyles = makeStyles({
   },
 });
 
-const Pagination = () => {
+const Pagination = ({ ...props }) => {
   const classes = useStyles();
   return (
     <MaterialPagination
-      count={10}
       color="primary"
       showFirstButton
       showLastButton
@@ -34,6 +33,7 @@ const Pagination = () => {
           {...item}
         />
       )}
+      {...props}
     />
   );
 };

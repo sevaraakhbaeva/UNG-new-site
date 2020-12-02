@@ -77,7 +77,7 @@ const UpperNavbar = ({ changeCurrentBlock, closePaperMenu }) => {
           </Box>
         ))}
         <Box className={classes.menuItem}>
-          <IconWithMenu Icon={<ArrowDownIcon />} text="Uz" reverse />
+          <IconWithMenu Icon={<ArrowDownIcon />} reverse />
         </Box>
         <Box className={classes.menuItem}>
           <Link

@@ -3,16 +3,16 @@ import "slick-carousel/slick/slick-theme.css";
 
 import React, { useEffect } from "react";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import MainContainer from "./components/MainContainer";
+import MainContainer from "components/MainContainer";
 // import Navbar from "./components/Navbar";
-import Navbar from "./components/navbar/index";
-import Footer from "./components/Footer";
-import HistoryContainer from "./components/HistoryContainer";
-import StructSubContainer from "./components/StructSubContainer";
-import NeftBazaContainer from "./components/NeftBazaContainer";
+import Navbar from "components/navbar/index";
+import Footer from "components/Footer";
+import HistoryContainer from "components/HistoryContainer";
+import StructSubContainer from "components/StructSubContainer";
+import NeftBazaContainer from "components/NeftBazaContainer";
 import ManagementContainer from "./components/ManagementContainer";
 import NewsContainer from "./components/NewsContainer";
-// import NewsDetailContainer from "./components/NewsDetailContainer";
+import NewsDetailContainer from "./components/NewsDetailContainer";
 import ContactsContainer from "./components/ContactsContainer";
 import AnnouncementContainer from "./components/AnnouncementContainer";
 // import LocalizationContainer from "./components/LocalizationContainer";
@@ -42,7 +42,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useLocation,
   Redirect,
 } from "react-router-dom";
 import ManagerDetailContainer from "./components/ManagerDetailContainer";
@@ -64,15 +63,9 @@ import {
   againstCorruptionData,
 } from "./constants/textData";
 
-function ScrollToTop() {
-  const { pathname } = useLocation();
+import TextLocalizationContainer from "./components/TextLocalizationContainer";
+import ScrollToTop from "components/ScrollToTop";
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-}
 const THEME = createMuiTheme({
   typography: {
     fontFamily: "LabGrotesque, Calibri, sans-serif",
@@ -199,7 +192,7 @@ function App() {
               <ManagementContainer />
             </Route>
             <Route path="/about/aims">
-              <TextContainer textPageInfo={aimData} />
+              <TextLocalizationContainer content="aimData" />
             </Route>
             <Route path="/about/supervisor">
               <SupervisorContainer />
@@ -334,9 +327,9 @@ function App() {
             </Route>
 
             {/* ===================== NEWS ===================== */}
-            {/* <Route path="/yangiliklar/:id">
+            <Route path="/press/news/:id">
               <NewsDetailContainer />
-            </Route> */}
+            </Route>
             <Route path="/press/news">
               <NewsContainer />
             </Route>

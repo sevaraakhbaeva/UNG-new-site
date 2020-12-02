@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
 
 const colors = {
   primary: "#03A3DF",
@@ -22,37 +23,28 @@ const useStyles = makeStyles({
   },
 });
 
-const CusButton = ({
-  variant,
-  color = "primary",
-  children,
-  style,
-  square,
-  thinBorder,
-  onButtonClick,
-}) => {
+const CusButton = (props) => {
+  const { color, children, style, square, thinBorder, ...rest } = props;
   const classes = useStyles({ isSquare: square, thinBorder: thinBorder });
   return (
     <Button
-      className={classes.buttonContainer}
+      className={clsx({
+        [classes.buttonContainer]: true,
+      })}
       style={{ color: colors[color], ...style }}
-      variant={variant}
-      onClick={onButtonClick}
+      {...rest}
     >
-      {/* <Typography variant="h5" align="center" component="span"> */}
       {children}
-      {/* </Typography> */}
     </Button>
   );
 };
 
 CusButton.defaultProps = {
   variant: "outlined",
-  // color: "primary",
+  color: "primary",
   style: {},
   square: false,
   thinBorder: false,
-  onButtonClick: () => {},
 };
 
 export default CusButton;

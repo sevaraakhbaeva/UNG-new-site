@@ -1,5 +1,6 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
+import { Trans } from "react-i18next";
 
 const LastChangesText = ({ children, styles }) => {
   return (
@@ -8,7 +9,7 @@ const LastChangesText = ({ children, styles }) => {
       align="right"
       color="secondary"
     >
-      Oxirgi o’zgartirilgan sana: {children}
+      <Trans>lastChanges</Trans>: {children}
     </Typography>
   );
 };

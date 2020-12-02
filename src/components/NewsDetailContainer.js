@@ -1,21 +1,26 @@
 import React from "react";
-import { Grid, Typography, Box } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
 
 import BlockLayout from "./BlockLayout";
+import { useParams } from "react-router-dom";
 
-const useStyles = makeStyles({});
+import useGetList from "hooks/crud/useGetList";
+import * as API from "constants/api";
+
+import LoadingContainer from "components/LoadingContainer";
+import NewsDetails from "components/news/NewsDetails";
 
 const NewsDetailContainer = () => {
-  const classes = useStyles();
+  const { id } = useParams();
+
   return (
     <BlockLayout
       title="Yangiliklar"
       breadcrumbNames={["Bosh sahifa", "Matbuot markazi", "Yangiliklar"]}
     >
-      <Grid container spacing={2}>
-        <Typography>NOTHING</Typography>
-      </Grid>
+      <LoadingContainer
+        api={API.NEWS_DETAIL + "/" + id}
+        component={NewsDetails}
+      />
     </BlockLayout>
   );
 };

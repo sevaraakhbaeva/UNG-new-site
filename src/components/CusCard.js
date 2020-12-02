@@ -3,6 +3,10 @@ import { Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import IconWithText from "./IconWithText";
 import { ReactComponent as ClockIcon } from "../icons/clock.svg";
+import { useTranslation } from "react-i18next";
+import Link from "./CusLink";
+
+import { formatDateAndTimeToDate } from "utils/formatDate";
 
 const useStyles = makeStyles({
   root: {
@@ -19,24 +23,31 @@ const useStyles = makeStyles({
 });
 
 const CusCard = ({ newsInfo }) => {
+  const { i18n } = useTranslation();
   const classes = useStyles();
+
+  const currentLanguage = i18n.language;
 
   return (
     <Card className={classes.root} elevation={3}>
       <CardMedia title="News item">
-        <img
-          alt="News"
-          className={classes.imgStyle}
-          src={`/images/news/${newsInfo.picPath}`}
-        />
+        <Link href={`/press/news/${newsInfo["slug"]}`}>
+          <img
+            alt="News"
+            className={classes.imgStyle}
+            src={newsInfo["image"]}
+          />
+        </Link>
       </CardMedia>
       <CardContent className={classes.cardContentStyle}>
-        <Typography gutterBottom variant="h5">
-          {newsInfo.title}
-        </Typography>
+        <Link href={`/press/news/${newsInfo["slug"]}`}>
+          <Typography gutterBottom variant="h5">
+            {newsInfo[`news_title_${currentLanguage}`]}
+          </Typography>
+        </Link>
         <IconWithText
           Icon={<ClockIcon />}
-          text={newsInfo.date}
+          text={formatDateAndTimeToDate(newsInfo["date_updated"])}
           style={{ marginTop: "10px", color: "#999999" }}
         />
       </CardContent>

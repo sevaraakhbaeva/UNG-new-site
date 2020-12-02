@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core";
 import BlockLayout from "./BlockLayout";
 import LastChangesText from "./LastChangesText";
 import { makeStyles } from "@material-ui/styles";
-import ListWithBulletPoint from "./ListWithBulletPoint";
+import HtmlConverter from "./HtmlConverter";
 
 const TextContainer = ({ textPageInfo, isHtml = false }) => {
   return (
@@ -24,7 +24,7 @@ const TextContainer = ({ textPageInfo, isHtml = false }) => {
         <>
           {isHtml ? (
             <Typography>
-              <ListWithBulletPoint htmlString={paragraph} />
+              <HtmlConverter htmlString={paragraph} />
               {/* <div dangerouslySetInnerHTML={{ __html: paragraph }} /> */}
             </Typography>
           ) : (

@@ -1,21 +1,9 @@
 import React from "react";
-import { Grid, Box } from "@material-ui/core";
-
 import BlockLayout from "./BlockLayout";
-import { newsBriefInfo } from "../constants/newsInfo";
-import { default as Card } from "./CusCard";
-import Pagination from "./Pagination";
-
-// const useStyles = makeStyles({
-//   paginationItemStyle: {
-//     fontSize: 20,
-//     borderRadius: 0,
-//   },
-//   selectedPaginationItem: {
-//     borderBottom: "3px solid #03A3DF",
-//     backgroundColor: "transparent !important",
-//   },
-// });
+import * as API from "constants/api";
+import News from "./news/News";
+import LoadingContainer from "components/LoadingContainer";
+import { useParams } from "react-router-dom";
 
 const NewsContainer = () => {
   return (
@@ -23,16 +11,7 @@ const NewsContainer = () => {
       title="Yangiliklar"
       breadcrumbNames={["Bosh sahifa", "Matbuot markazi", "Yangiliklar"]}
     >
-      <Grid container spacing={2}>
-        {newsBriefInfo.map((newsItem, i) => (
-          <Grid item key={i} lg={4} md={6} xs={12}>
-            <Card newsInfo={newsItem} />
-          </Grid>
-        ))}
-      </Grid>
-      <Box mt={4} display="flex" justifyContent="center">
-        <Pagination />
-      </Box>
+      <LoadingContainer api={API.NEWS_LIST} component={News} />
     </BlockLayout>
   );
 };

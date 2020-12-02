@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import IconWithText from "./IconWithText";
 import { Menu, MenuItem, Typography, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles({
   menuText: {
@@ -17,7 +18,20 @@ const useStyles = makeStyles({
   },
 });
 
-const IconWithMenu = ({ Icon, text, style, reverse, textStyle }) => {
+const dictionaryOfLang = {
+  uz: "Uz",
+  ru: "Ru",
+  en: "En",
+};
+
+const IconWithMenu = ({ Icon, style, reverse, textStyle }) => {
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
+  const handleLanguageChange = (selectedLanguage) => {
+    i18n.changeLanguage(selectedLanguage);
+  };
+
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
@@ -26,6 +40,7 @@ const IconWithMenu = ({ Icon, text, style, reverse, textStyle }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <>
       <Link
@@ -35,7 +50,7 @@ const IconWithMenu = ({ Icon, text, style, reverse, textStyle }) => {
       >
         <IconWithText
           Icon={Icon}
-          text={text}
+          text={dictionaryOfLang[currentLanguage]}
           textStyle={textStyle}
           style={style}
           reverse={reverse}
@@ -48,12 +63,23 @@ const IconWithMenu = ({ Icon, text, style, reverse, textStyle }) => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem className={classes.listMargin} onClick={handleClose}>
-          <Typography className={classes.menuText}>Ru</Typography>
-        </MenuItem>
-        <MenuItem className={classes.listMargin} onClick={handleClose}>
-          <Typography className={classes.menuText}>En</Typography>
-        </MenuItem>
+        {["ru", "en", "uz"].map(
+          (lang) =>
+            currentLanguage !== lang && (
+              <MenuItem
+                key={lang}
+                className={classes.listMargin}
+                onClick={() => {
+                  handleClose();
+                  handleLanguageChange(lang);
+                }}
+              >
+                <Typography className={classes.menuText}>
+                  {dictionaryOfLang[lang]}
+                </Typography>
+              </MenuItem>
+            )
+        )}
       </Menu>
     </>
   );

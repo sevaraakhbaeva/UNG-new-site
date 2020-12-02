@@ -3,7 +3,7 @@ import { Grid, Typography, Box } from "@material-ui/core";
 import BlockLayout from "./BlockLayout";
 import { supervisorData } from "../constants/supervisorData";
 import { makeStyles } from "@material-ui/styles";
-import ListWithBulletPoint from "./ListWithBulletPoint";
+import HtmlConverter from "./HtmlConverter";
 import ManCard from "./ManCard";
 
 const useStyles = makeStyles({
@@ -40,7 +40,7 @@ const SupervisorContainer = () => {
         <Typography className={classes.titleStyle} align="center">
           Кузатув кенгашининг ваколат доирасига қуйидагилар киради:
         </Typography>
-        <ListWithBulletPoint htmlString={supervisorData.dataList} />
+        <HtmlConverter htmlString={supervisorData.dataList} />
       </Box>
     </BlockLayout>
   );

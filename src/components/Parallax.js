@@ -30,7 +30,9 @@ const Parallax = () => {
               korporativ nomi "O'zbekneftgaz" milliy xolding kompaniyasi.
               Kompaniyaning bosh qarorgohi Toshkent shahrida joylashgan.
             </Typography>
-            <Button style={{ marginTop: "40px" }}>Ko’proq ma’lumot</Button>
+            <Button href="/about/history" style={{ marginTop: "40px" }}>
+              Ko’proq ma’lumot
+            </Button>
           </Grid>
         </Grid>
       </Block>

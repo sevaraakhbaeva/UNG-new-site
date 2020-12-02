@@ -9,6 +9,7 @@ const BlockLayout = ({ children, title, breadcrumbNames }) => {
       <Breadcrumbs aria-label="breadcrumb">
         {breadcrumbNames.map((name, i) => (
           <Typography
+            key={i}
             color={i === breadcrumbNames.length - 1 ? "primary" : "initial"}
           >
             {name}

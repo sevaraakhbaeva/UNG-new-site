@@ -12,11 +12,11 @@ const useStyles = makeStyles({
   },
 });
 
-const CusLink = ({ children }) => {
+const CusLink = ({ children, ...props }) => {
   const classes = useStyles();
 
   return (
-    <Link underline="none" className={classes.linkStyle}>
+    <Link underline="none" className={classes.linkStyle} {...props}>
       {children}
     </Link>
   );
