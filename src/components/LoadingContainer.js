@@ -2,15 +2,10 @@ import React, { useState } from "react";
 import useGetList from "hooks/crud/useGetList";
 import Loader from "components/Loader";
 
-const LoadingContainer = ({ api, component: Component }) => {
-  const [apiState, setApiState] = useState(api);
-  const newsList = useGetList(apiState);
-  const { isLoaded, isLoading, results } = newsList;
+const LoadingContainer = ({ api, component: Component, ...rest }) => {
+  const newsList = useGetList(api);
+  const { isLoaded, isLoading, data } = newsList;
   const [isCurrentlyLoading, setIsCurrentlyLoading] = useState(true);
-
-  const apiChange = (newApi) => {
-    setApiState(newApi);
-  };
 
   React.useEffect(() => {
     if (isLoaded && !isLoading) {
@@ -18,11 +13,11 @@ const LoadingContainer = ({ api, component: Component }) => {
     }
   });
 
-  return isCurrentlyLoading ? (
-    <Loader />
-  ) : (
-    <Component apiChange={apiChange} results={results} />
-  );
+  // console.log(api);
+  // console.log("data:");
+  // console.log(data);
+
+  return isCurrentlyLoading ? <Loader /> : <Component data={data} {...rest} />;
 };
 
 export default LoadingContainer;

@@ -1,31 +1,31 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import MainContainer from "components/MainContainer";
-// import Navbar from "./components/Navbar";
+// import Navbar from "components/Navbar";
 import Navbar from "components/navbar/index";
 import Footer from "components/Footer";
 import HistoryContainer from "components/HistoryContainer";
 import StructSubContainer from "components/StructSubContainer";
 import NeftBazaContainer from "components/NeftBazaContainer";
-import ManagementContainer from "./components/ManagementContainer";
-import NewsContainer from "./components/NewsContainer";
-import NewsDetailContainer from "./components/NewsDetailContainer";
-import ContactsContainer from "./components/ContactsContainer";
-import AnnouncementContainer from "./components/AnnouncementContainer";
-// import LocalizationContainer from "./components/LocalizationContainer";
-import FAQContainer from "./components/FAQContainer";
-import ProductsContainer from "./components/ProductsContainer";
-import TextContainer from "./components/TextContainer";
+import ManagementContainer from "components/ManagementContainer";
+import NewsContainer from "components/NewsContainer";
+import NewsDetailContainer from "components/NewsDetailContainer";
+import ContactsContainer from "components/ContactsContainer";
+import AnnouncementContainer from "components/AnnouncementContainer";
+// import LocalizationContainer from "components/LocalizationContainer";
+import FAQContainer from "components/FAQContainer";
+import ProductsContainer from "components/ProductsContainer";
+import TextContainer from "components/TextContainer";
 
-import PagesWithFilesContainer from "./components/PagesWithFilesContainer";
+import PagesWithFilesContainer from "components/PagesWithFilesContainer";
 import {
   titleOfTransparentData,
   transparentDataList,
-} from "./constants/transparentData";
-import { titleOfLocalization, listOfFiles } from "./constants/localizationData";
+} from "constants/transparentData";
+import { titleOfLocalization, listOfFiles } from "constants/localizationData";
 import {
   filesBusinessPlanData,
   titlesOfLocalNormativeActs,
@@ -36,7 +36,7 @@ import {
   filesCorporateGovernance,
   filesReports,
   titlesOfReports,
-} from "./constants/filesData";
+} from "constants/filesData";
 
 import {
   BrowserRouter as Router,
@@ -44,15 +44,15 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import ManagerDetailContainer from "./components/ManagerDetailContainer";
-import TenderContainer from "./components/TenderContainer";
-import TenderDetailContainer from "./components/TenderDetailContainer";
-import SupervisorContainer from "./components/SupervisorContainer";
-import AuditContainer from "./components/AuditContainer";
-import PagesWithFilesWithoutSideBar from "./components/PagesWithFilesWithoutSideBar";
-import ImageContainer from "./components/ImageContainer";
-import PhotoLibContainer from "./components/PhotoLibContainer";
-import VideoLibContainer from "./components/VideoLibContainer";
+import ManagerDetailContainer from "components/ManagerDetailContainer";
+import TenderContainer from "components/TenderContainer";
+import TenderDetailContainer from "components/TenderDetailContainer";
+import SupervisorContainer from "components/SupervisorContainer";
+import AuditContainer from "components/AuditContainer";
+import PagesWithFilesWithoutSideBar from "components/PagesWithFilesWithoutSideBar";
+import ImageContainer from "components/ImageContainer";
+import PhotoLibContainer from "components/PhotoLibContainer";
+import VideoLibContainer from "components/VideoLibContainer";
 
 import {
   aimData,
@@ -61,11 +61,12 @@ import {
   investmentProjectsData,
   ungStatementData,
   againstCorruptionData,
-} from "./constants/textData";
+} from "constants/textData";
 
-import TextLocalizationContainer from "./components/TextLocalizationContainer";
+import TextLocalizationContainer from "components/TextLocalizationContainer";
 import ScrollToTop from "components/ScrollToTop";
-
+import { useTranslation } from "react-i18next";
+import OilBaseJsonGenerator from "utils/OilBaseJsonGenerator";
 const THEME = createMuiTheme({
   typography: {
     fontFamily: "LabGrotesque, Calibri, sans-serif",
@@ -105,7 +106,7 @@ const THEME = createMuiTheme({
         fontSize: 26,
       },
       "@media (max-width:600px)": {
-        fontSize: 22,
+        fontSize: 20,
       },
     },
     h4: {
@@ -154,6 +155,7 @@ const THEME = createMuiTheme({
 });
 
 function App() {
+  const { t } = useTranslation();
   return (
     <ThemeProvider theme={THEME}>
       <Router>
@@ -161,6 +163,9 @@ function App() {
         <div className="App">
           <Navbar />
           <Switch>
+            <Route path="/generate">
+              <OilBaseJsonGenerator />
+            </Route>
             <Route exact path="/">
               <MainContainer />
             </Route>
@@ -171,11 +176,11 @@ function App() {
             </Route>
             <Route path="/about/departments">
               <ImageContainer
-                imgUrl="departments.png"
-                title="Tashkiliy tuzilma"
-                heading="«O‘ZBEKNEFTGAZ» AJ ijroyi apparatining tashkiliy tuzilmasi"
-                breadcrumbNames={["Kompaniya haqida"]}
-                lastChangesText="01-sentabr 2020"
+                imgUrl="departments.svg"
+                title="Organizational structure"
+                heading="Organizational structure of the executive body of JSC «Uzbekneftegaz»"
+                breadcrumbNames={["About us"]}
+                lastChangesText={`01-${t("months.December")} 2020`}
               />
             </Route>
             <Route path="/about/structure/storages/:id">
@@ -208,25 +213,22 @@ function App() {
             <Route path="/about/business-plan">
               <PagesWithFilesWithoutSideBar
                 filesInfo={filesBusinessPlanData}
-                title="Бизнес режанинг асосий параметрларини бажарилиши"
-                breadCrumbsTitle={["Биз ҳақимизда"]}
+                title="Implementation of the basic parameters of a business plan"
+                breadCrumbsTitle={["About us"]}
               />
             </Route>
             <Route path="/about/scientech">
               <PagesWithFilesWithoutSideBar
                 filesInfo={filesScienTech}
-                title="Илмий техник кенгаши"
-                breadCrumbsTitle={["Биз ҳақимизда"]}
+                title="Scientific and Technical Council"
+                breadCrumbsTitle={["About us"]}
               />
             </Route>
 
             <Route path="/about/regulation/:id">
               <PagesWithFilesContainer
-                filesInfo={filesLocalNormativeActs}
-                submenus={titlesOfLocalNormativeActs}
-                title="Нормативно правовые акты"
-                breadCrumbsTitle={["Биз ҳақимизда"]}
-                url="/about/regulation"
+                title="Regulations"
+                breadCrumbsTitle={["About us"]}
               />
             </Route>
             <Route path="/about/regulation">
@@ -248,22 +250,29 @@ function App() {
             <Route path="/business/products">
               <ProductsContainer />
             </Route>
-            <Route path="/business/tender/:id/:tenderId">
+            <Route path="/business/tender/detail/:slug">
               <TenderDetailContainer />
+              {/* <TenderDetail /> */}
             </Route>
-            <Route path="/business/tender/:id">
+            <Route path="/business/tender/:id/:page">
               <TenderContainer />
             </Route>
+            <Route
+              exact
+              path="/business/tender/:id"
+              render={(props) => (
+                <Redirect to={`/business/tender/${props.match.params.id}/1`} />
+              )}
+            />
             <Route path="/business/tender">
-              <Redirect to="/business/tender/1" />
+              <Redirect to="/business/tender/1/1" />
             </Route>
-            <Route path="/business/localization/:id">
+
+            <Route path="/business/localization/:id/sub/:subId">
               <PagesWithFilesContainer
-                filesInfo={listOfFiles}
-                submenus={titleOfLocalization}
-                title="Маҳаллийлаштириш"
-                breadCrumbsTitle={["Бизнесга оид"]}
-                url="/business/localization"
+                title="Localization"
+                breadCrumbsTitle={["To business"]}
+                url={"/business/localization"}
               />
             </Route>
             <Route path="/business/localization">
@@ -274,8 +283,8 @@ function App() {
             <Route path="/shareholders/share-capital">
               <PagesWithFilesWithoutSideBar
                 filesInfo={filesShareCapital}
-                title="Акциядорлик капиталининг таркиби"
-                breadCrumbsTitle={["Акциядор ва Инвесторлар"]}
+                title="Share capital structure"
+                breadCrumbsTitle={["Investor and Shareholder"]}
               />
             </Route>
 
@@ -284,11 +293,8 @@ function App() {
             </Route>
             <Route path="/shareholders/open/:id">
               <PagesWithFilesContainer
-                filesInfo={transparentDataList}
-                submenus={titleOfTransparentData}
-                title="Ошкоралик маълумотлар"
-                breadCrumbsTitle={["Акциядор ва инвесторлар"]}
-                url="/shareholders/open"
+                title="Disclosures Information"
+                breadCrumbsTitle={["Investor and Shareholder"]}
               />
             </Route>
             <Route path="/shareholders/open">
@@ -298,24 +304,21 @@ function App() {
             <Route path="/shareholders/charter-regulations">
               <PagesWithFilesWithoutSideBar
                 filesInfo={filesCharterRegulation}
-                title="Устав ва ички низомлар"
-                breadCrumbsTitle={["Акциядор ва Инвесторлар"]}
+                title="Charter and internal documents"
+                breadCrumbsTitle={["Investor and Shareholder"]}
               />
             </Route>
             <Route path="/shareholders/corporate-governance">
               <PagesWithFilesWithoutSideBar
                 filesInfo={filesCorporateGovernance}
-                title="Корпоратив бошқарув кодекси"
-                breadCrumbsTitle={["Акциядор ва Инвесторлар"]}
+                title="Corporation Control Codex"
+                breadCrumbsTitle={["Investor and Shareholder"]}
               />
             </Route>
             <Route path="/shareholders/reports/:id">
               <PagesWithFilesContainer
-                filesInfo={filesReports}
-                submenus={titlesOfReports}
-                title="Ҳисоботлар"
-                breadCrumbsTitle={["Акциядор ва инвесторлар"]}
-                url="/shareholders/reports"
+                title="Reports"
+                breadCrumbsTitle={["Investor and Shareholder"]}
               />
             </Route>
             <Route path="/shareholders/reports">
@@ -327,30 +330,33 @@ function App() {
             </Route>
 
             {/* ===================== NEWS ===================== */}
-            <Route path="/press/news/:id">
+            <Route path="/press/page/:id">
               <NewsDetailContainer />
             </Route>
-            <Route path="/press/news">
+            <Route path="/press/:page">
               <NewsContainer />
+            </Route>
+            <Route path="/press">
+              <Redirect to="/press/1" />
             </Route>
           </Switch>
 
           {/* ===================== YOUTH CENTER ===================== */}
-          <Route path="/youth/structure">
+          <Route path="/youth">
             <ImageContainer
-              imgUrl="youth_center.png"
-              title="«ЎЗБЕКНЕФТГАЗ» АЖнинг Ёшлар маркази ташкилий тузилмаси"
+              imgUrl="youth_center.svg"
+              title="Organizational structure of the youth center"
               heading=""
-              breadcrumbNames={["Ёшлар сиёсати"]}
+              breadcrumbNames={["Youth policy"]}
               lastChangesText="06-sentabr 2019"
             />
           </Route>
-          <Route path="/youth/photo">
-            <PhotoLibContainer />
-          </Route>
-          <Route path="/youth/video">
-            <VideoLibContainer />
-          </Route>
+          {/*<Route path="/youth/photo">*/}
+          {/*  <PhotoLibContainer />*/}
+          {/*</Route>*/}
+          {/*<Route path="/youth/video">*/}
+          {/*  <VideoLibContainer />*/}
+          {/*</Route>*/}
 
           {/* ===================== Anti-corruption ===================== */}
           <Route path="/anti-corruption/ung-statement">
@@ -360,8 +366,8 @@ function App() {
           <Route path="/anti-corruption/local-regulations">
             <PagesWithFilesWithoutSideBar
               filesInfo={filesCorporateGovernance}
-              title="Локал норматив ҳужжатлар"
-              breadCrumbsTitle={["Коррупцияга қарши"]}
+              title="Local regulatory documents"
+              breadCrumbsTitle={["Against corruption"]}
             />
           </Route>
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Typography, Box, Grid, Divider, Paper, Link } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 import MenuListItem from "./MenuListItem";
 import { find } from "ramda";
 import SideMenuImage from "./SideMenuImage";

@@ -6,20 +6,19 @@ import { useTranslation } from "react-i18next";
 import LastChangesText from "components/LastChangesText";
 import { formatDateAndTimeToDate } from "utils/formatDate";
 
-const NewsDetails = ({ results }) => {
+const NewsDetails = ({ data }) => {
   const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
 
   return (
     <Box display="flex" justifyContent="center">
       <Box width="75%">
         <Typography align="center" variant="h3">
-          {results.data[`news_title_${i18n.language}`]}
+          {data[`news_title_${currentLanguage}`]}
         </Typography>
-        <HtmlConverter
-          htmlString={results.data[`news_body_${i18n.language}`]}
-        />
+        <HtmlConverter htmlString={data[`news_body_${currentLanguage}`]} />
         <LastChangesText>
-          {formatDateAndTimeToDate(results.data["date_updated"])}
+          {formatDateAndTimeToDate(data["date_updated"], currentLanguage)}
         </LastChangesText>
       </Box>
     </Box>

@@ -18,6 +18,7 @@
     "i18next": "^19.8.4",
     "ramda": "^0.27.1",
     "react": "^17.0.0",
+    "react-countup": "^4.3.3",
     "react-dom": "^17.0.0",
     "react-i18next": "^11.7.3",
     "react-loader-spinner": "^3.1.14",
@@ -27,7 +28,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.4",
     "react-slick": "^0.27.12",
+    "react-visibility-sensor": "^5.1.1",
     "react-yandex-maps": "^4.5.0",
+    "read-excel-file": "^4.1.0",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
@@ -51,5 +54,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  }
 }

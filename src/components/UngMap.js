@@ -1,12 +1,9 @@
 import React from "react";
 import { YMaps, Map, Placemark } from "react-yandex-maps";
 
-// const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
 const UngMap = () => {
   return (
     <YMaps>
-      My awesome application with maps!
       <Map
         width="100%"
         height={500}

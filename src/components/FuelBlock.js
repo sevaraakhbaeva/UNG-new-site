@@ -1,37 +1,46 @@
 import React from "react";
 import { Paper, Typography, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { ReactComponent as DieselFuelIcon } from "../icons/neftBaza/dieselFuel.svg";
+import { ReactComponent as DieselFuelIcon } from "icons/neftBaza/dieselFuel.svg";
+import { ReactComponent as DieselOilIcon } from "icons/neftBaza/dieselOil.svg";
+import { ReactComponent as FuelIcon } from "icons/neftBaza/fuel.svg";
+import { ReactComponent as FurnaceFuelIcon } from "icons/neftBaza/furnaceFuel.svg";
+import { ReactComponent as IndustrialOilIcon } from "icons/neftBaza/industrailOil.svg";
+
+const icons = {
+  petrol: <FuelIcon />,
+  oil: <DieselOilIcon />,
+  diesel: <DieselFuelIcon />,
+  furnace: <FurnaceFuelIcon />,
+  industrial: <IndustrialOilIcon />,
+};
 
 const useStyles = makeStyles({
   paperFuelBlock: {
-    padding: "12px 0px 12px 10px",
     backgroundImage: "url(/images/neftBaza/logo.png)",
     backgroundPosition: "right bottom",
     backgroundRepeat: "no-repeat",
     backgroundSize: "auto 80%",
-    width: "100%",
-  },
-  containerGrid: {
-    display: "flex",
-    alignItems: "center",
-  },
-  iconMargin: {
-    marginRight: 8,
+    padding: "10px 5px",
   },
 });
 
-const FuelBlock = () => {
+const FuelBlock = ({ productInfo }) => {
   const classes = useStyles();
+  const Icon = icons[productInfo.iconName];
   return (
-    <Paper elevation={2} square className={classes.paperFuelBlock}>
-      <Box className={classes.containerGrid}>
-        <Box component="span" className={classes.iconMargin}>
-          <DieselFuelIcon />
+    <Box width={"100%"} maxWidth={210} mr={1} mb={1}>
+      <Paper elevation={2} square className={classes.paperFuelBlock}>
+        <Box height={70} display={"flex"} alignItems={"center"}>
+          <Box pl={1} display={"flex"} alignItems={"center"}>
+            <Box component="span" pr={1}>
+              {Icon}
+            </Box>
+            <Typography component="span">{productInfo.name}</Typography>
+          </Box>
         </Box>
-        <Typography component="span">Benzin AI-80</Typography>
-      </Box>
-    </Paper>
+      </Paper>
+    </Box>
   );
 };
 

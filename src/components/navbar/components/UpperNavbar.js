@@ -1,27 +1,32 @@
 import React from "react";
-import { Box, Link } from "@material-ui/core";
+import { Box, Link, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { ReactComponent as VisionIcon } from "../../../icons/Vector.svg";
-import { ReactComponent as FileIcon } from "../../../icons/file-text.svg";
-import { ReactComponent as MapIcon } from "../../../icons/map.svg";
-import { ReactComponent as ArrowDownIcon } from "../../../icons/chevron-down.svg";
-import { ReactComponent as SearchIcon } from "../../../icons/search.svg";
+
+import { ReactComponent as VisionIcon } from "icons/Vector.svg";
+import { ReactComponent as FileIcon } from "icons/file-text.svg";
+import { ReactComponent as MapIcon } from "icons/map.svg";
+import { ReactComponent as ArrowDownIcon } from "icons/chevron-down.svg";
+import { ReactComponent as SearchIcon } from "icons/search.svg";
 import { Link as RouterLink } from "react-router-dom";
 
-import IconWithText from "../../IconWithText";
-import IconWithMenu from "../../IconWithMenu";
+import IconWithText from "components/IconWithText";
+import IconWithMenu from "components/IconWithMenu";
+import { useTranslation } from "react-i18next";
+import MenuIcon from "@material-ui/icons/Menu";
+import Drawer from "components/navbar/components/Drawer";
+
 const topMenuItems = [
   {
     icon: <FileIcon />,
-    text: "Bo’sh ish o’rinlari",
+    text: "Vacancy",
   },
   {
     icon: <MapIcon />,
-    text: "Korxonalar",
+    text: "Companies",
   },
 ];
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: "25px",
     width: "100%",
@@ -33,13 +38,31 @@ const useStyles = makeStyles({
     color: "black",
     cursor: "pointer",
   },
-  imageStart: {
+  leftUpper: {
     marginRight: "auto",
   },
-});
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+}));
 
-const UpperNavbar = ({ changeCurrentBlock, closePaperMenu }) => {
+const UpperNavbar = ({ changeCurrentBlock, closePaperMenu, hideMenu }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  React.useEffect(() => {
+    if (!hideMenu) handleDrawerClose();
+  }, [hideMenu]);
+
   return (
     <>
       <Box
@@ -48,16 +71,28 @@ const UpperNavbar = ({ changeCurrentBlock, closePaperMenu }) => {
         alignItems="center"
         justifyContent="flex-end"
       >
-        <Box justifySelf="flex-start" className={classes.imageStart}>
-          <RouterLink
-            onClick={closePaperMenu}
-            style={{ textDecoration: "none" }}
-            to="/"
-          >
-            <img alt="UNG logo" src="/images/logo.png" width="150" />
-          </RouterLink>
+        <Box justifySelf="flex-start" className={classes.leftUpper}>
+          {hideMenu ? (
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerOpen}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+          ) : (
+            <RouterLink
+              onClick={closePaperMenu}
+              style={{ textDecoration: "none" }}
+              to="/"
+            >
+              <img alt="UNG logo" src="/images/logo.png" width="150" />
+            </RouterLink>
+          )}
         </Box>
-        <Box className={classes.menuItem}>
+        {/* <Box className={classes.menuItem}>
           <Link
             onClick={() => {
               changeCurrentBlock("disability");
@@ -67,19 +102,19 @@ const UpperNavbar = ({ changeCurrentBlock, closePaperMenu }) => {
           >
             <IconWithText
               Icon={<VisionIcon />}
-              text="Imkoniyati cheklanganlar uchun"
+              text={t("For people with disabilities")}
             />
           </Link>
-        </Box>
+        </Box> */}
         {topMenuItems.map((item, i) => (
           <Box key={i} className={classes.menuItem}>
-            <IconWithText Icon={item.icon} text={item.text} />
+            <IconWithText Icon={item.icon} text={t(item.text)} />
           </Box>
         ))}
         <Box className={classes.menuItem}>
           <IconWithMenu Icon={<ArrowDownIcon />} reverse />
         </Box>
-        <Box className={classes.menuItem}>
+        {/* <Box className={classes.menuItem}>
           <Link
             underline="none"
             className={classes.linkStyle}
@@ -89,8 +124,15 @@ const UpperNavbar = ({ changeCurrentBlock, closePaperMenu }) => {
           >
             <SearchIcon />
           </Link>
-        </Box>
+        </Box> */}
       </Box>
+      {hideMenu && (
+        <Drawer
+          open={open}
+          handleDrawerOpen={handleDrawerOpen}
+          handleDrawerClose={handleDrawerClose}
+        />
+      )}
     </>
   );
 };

@@ -130,11 +130,15 @@ const CusTable = () => {
             <TableRow>
               {tableHead.map((item, i) =>
                 i !== 0 ? (
-                  <TableCell className={classes.tableHeadTitle} align="right">
+                  <TableCell
+                    key={i}
+                    className={classes.tableHeadTitle}
+                    align="right"
+                  >
                     {item}
                   </TableCell>
                 ) : (
-                  <TableCell className={classes.tableHeadTitle}>
+                  <TableCell key={i} className={classes.tableHeadTitle}>
                     {item}
                   </TableCell>
                 )

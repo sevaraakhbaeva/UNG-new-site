@@ -7,17 +7,46 @@ import StructuralBlock from "./StructuralBlock";
 import BlockLayout from "./BlockLayout";
 import { useRouteMatch } from "react-router-dom";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   gridContainer: {
     width: "100%",
     display: "flex",
     flexFlow: "row wrap",
+    [theme.breakpoints.down("md")]: {
+      justifyContent: "center",
+    },
   },
   gridItem: {
     margin: 8,
     flex: "0 1 calc(20% - 16px)",
+    minWidth: 216,
   },
-});
+  blockStyle: {
+    marginBottom: 40,
+    [theme.breakpoints.down("md")]: {
+      marginBottom: 30,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: 25,
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: 20,
+    },
+  },
+  titleStyle: {
+    marginBottom: 35,
+    fontSize: 17,
+    [theme.breakpoints.down("md")]: {
+      marginBottom: 25,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: 15,
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: 10,
+    },
+  },
+}));
 
 const StructSubContainer = () => {
   const classes = useStyles();
@@ -33,8 +62,8 @@ const StructSubContainer = () => {
       ]}
     >
       {structSubData.map((divisionBlock) => (
-        <Box style={{ marginBottom: 40 }}>
-          <Typography variant="h4" style={{ marginBottom: 40 }} color="primary">
+        <Box className={classes.blockStyle}>
+          <Typography className={classes.titleStyle} color="primary">
             {divisionBlock.title}
           </Typography>
           <Box className={classes.gridContainer}>

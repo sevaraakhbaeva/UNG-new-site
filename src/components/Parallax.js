@@ -3,35 +3,61 @@ import Block from "./Block";
 import { Grid, Typography, Box } from "@material-ui/core";
 import Title from "./Title";
 import { default as Button } from "./Button";
+import { useTranslation } from "react-i18next";
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles((theme) => ({
+  buttonMargin: {
+    marginTop: 40,
+    [theme.breakpoints.down("md")]: {
+      marginTop: 30,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 20,
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: 10,
+    },
+  },
+  textMargin: {
+    marginTop: 40,
+    [theme.breakpoints.down("md")]: {
+      marginTop: 30,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 20,
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: 10,
+    },
+  },
+  backgroundImage: {
+    backgroundImage: 'url("/images/main_history.png")',
+    height: "450px",
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    display: "flex",
+    alignItems: "center",
+  },
+}));
 
 const Parallax = () => {
+  const { t } = useTranslation();
+  const classes = useStyles();
+
   return (
-    <Box
-      style={{
-        backgroundImage: 'url("/images/main_history.png")',
-        // backgroundSize: "contain",
-        height: "450px",
-        backgroundAttachment: "fixed",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}
-    >
+    <Box className={classes.backgroundImage}>
       <Block>
-        <Grid style={{ height: "100%" }} container alignItems="center">
+        <Grid style={{ height: "100%" }} container>
           <Grid xs={12} md={6} item>
-            <Title>Kompaniya haqida</Title>
-            <Typography style={{ marginTop: "40px" }}>
-              <b>"O'zbekneftgaz" milliy xolding kompaniyasi</b> - neft va gazni
-              geologik qidirish, qazib olish, tashish, saqlash, qayta ishlash va
-              sotish bilan shug'ullanadigan o'zbek xolding korporatsiyasi.
-              O'zbekistondagi eng yirik davlat kompaniyasi. Tabiiy gaz ishlab
-              chiqarish bo'yicha kompaniya dunyoda 11-o'rinni egallaydi. To'liq
-              korporativ nomi "O'zbekneftgaz" milliy xolding kompaniyasi.
-              Kompaniyaning bosh qarorgohi Toshkent shahrida joylashgan.
+            <Title>{t("About us")}</Title>
+            <Typography className={classes.textMargin}>
+              {t("briefHistory")}
             </Typography>
-            <Button href="/about/history" style={{ marginTop: "40px" }}>
-              Ko’proq ma’lumot
+            <Button href="/about/history" className={classes.buttonMargin}>
+              {t("More information")}
             </Button>
           </Grid>
         </Grid>

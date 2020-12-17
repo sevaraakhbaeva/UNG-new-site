@@ -4,40 +4,57 @@ import Slider from "react-slick";
 import Arrow from "./Arrow";
 import Title from "./Title";
 import Block from "./Block";
+import { breakpoints } from "constants/breakpoints";
+
+var items = [
+  {
+    name: '"Gazprom" PJSC kompaniyasi',
+    imageUrl: "/images/partners/img1.png",
+  },
+  {
+    name: '"LUKOYL" YoAJ kompaniyasi',
+    imageUrl: "/images/partners/img2.png",
+  },
+  {
+    name: "O‘zbekiston Respublikasi Energetika vazirligi",
+    imageUrl: "/images/partners/img3.png",
+  },
+  {
+    name: '"Sasol" energiya kompaniyasi',
+    imageUrl: "/images/partners/img4.png",
+  },
+  {
+    name: "O‘zbekiston Respublikasi Energetika vazirligi",
+    imageUrl: "/images/partners/img5.png",
+  },
+  {
+    name: "O‘zbekiston Respublikasi Energetika vazirligi",
+    imageUrl: "/images/partners/img6.png",
+  },
+];
 
 const Partners = () => {
-  var items = [
-    {
-      name: '"Gazprom" PJSC kompaniyasi',
-      imageUrl: "/images/partners/img1.png",
-    },
-    {
-      name: '"LUKOYL" YoAJ kompaniyasi',
-      imageUrl: "/images/partners/img2.png",
-    },
-    {
-      name: "O‘zbekiston Respublikasi Energetika vazirligi",
-      imageUrl: "/images/partners/img3.png",
-    },
-    {
-      name: '"Sasol" energiya kompaniyasi',
-      imageUrl: "/images/partners/img4.png",
-    },
-    {
-      name: "O‘zbekiston Respublikasi Energetika vazirligi",
-      imageUrl: "/images/partners/img5.png",
-    },
-    {
-      name: "O‘zbekiston Respublikasi Energetika vazirligi",
-      imageUrl: "/images/partners/img6.png",
-    },
-  ];
+  const [numberOfSlides, setNumberOfSlides] = React.useState(null);
+
+  const handleWindowChange = () => {
+    const windowWidth = window.innerWidth;
+    if (windowWidth <= breakpoints.sm) setNumberOfSlides(1);
+    else if (windowWidth <= breakpoints.md) setNumberOfSlides(2);
+    else if (windowWidth <= breakpoints.lg) setNumberOfSlides(3);
+    else if (windowWidth <= breakpoints.xl) setNumberOfSlides(4);
+    else setNumberOfSlides(5);
+  };
+
+  React.useEffect(() => {
+    handleWindowChange();
+    window.addEventListener("resize", handleWindowChange);
+  }, []);
 
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: numberOfSlides,
     slidesToScroll: 1,
     autoplay: true,
     nextArrow: <Arrow direction="right" withoutMargin />,

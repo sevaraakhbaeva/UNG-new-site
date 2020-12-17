@@ -1,88 +1,67 @@
+/* Regular */
 @font-face {
   font-family: "LabGrotesque";
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-Regular.eot");
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-Regular.woff2")
-      format("woff2"),
-    url("./fonts/Lab Grotesque-font/LabGrotesque-Regular.ttf")
-      format("TrueType");
+  src: url("./fonts/raleway-all/Raleway-Regular.ttf") format("TrueType");
+  font-weight: normal;
 }
 
+/* BlackItalic */
 @font-face {
   font-family: "LabGrotesque";
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-BlackItalic.eot");
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-BlackItalic.woff2")
-      format("woff2"),
-    url("./fonts/Lab Grotesque-font/LabGrotesque-BlackItalic.ttf")
-      format("TrueType");
+  src: url("./fonts/raleway-all/Raleway-Black.ttf") format("TrueType");
   font-style: italic;
   color: black;
+  font-weight: normal;
 }
 
+/* Bold */
 @font-face {
   font-family: "LabGrotesque";
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-Bold.eot");
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-Bold.woff2") format("woff2"),
-    url("./fonts/Lab Grotesque-font/LabGrotesque-Bold.ttf") format("TrueType");
+  src: url("./fonts/raleway-all/Raleway-Bold.ttf") format("TrueType");
   font-weight: bold;
 }
 
+/* BoldItalic */
 @font-face {
   font-family: "LabGrotesque";
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-BoldItalic.eot");
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-BoldItalic.woff2")
-      format("woff2"),
-    url("./fonts/Lab Grotesque-font/LabGrotesque-BoldItalic.ttf")
-      format("TrueType");
+  src: url("./fonts/raleway-all/Raleway-BoldItalic.ttf") format("TrueType");
   font-weight: bold;
   font-style: italic;
 }
 
+/* Italic */
 @font-face {
   font-family: "LabGrotesque";
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-Italic.eot");
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-Italic.woff2")
-      format("woff2"),
-    url("./fonts/Lab Grotesque-font/LabGrotesque-Italic.ttf") format("TrueType");
+  src: url("./fonts/raleway-all/Raleway-Italic.ttf") format("TrueType");
   font-style: italic;
 }
 
+/* Lighter */
 @font-face {
   font-family: "LabGrotesque";
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-Light.eot");
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-Light.woff2")
-      format("woff2"),
-    url("./fonts/Lab Grotesque-font/LabGrotesque-Light.ttf") format("TrueType");
+  src: url("./fonts/raleway-all/Raleway-Light.ttf") format("TrueType");
   font-weight: lighter;
 }
 
+/* LighterItalic */
 @font-face {
   font-family: "LabGrotesque";
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-LightItalic.eot");
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-LightItalic.woff2")
-      format("woff2"),
-    url("./fonts/Lab Grotesque-font/LabGrotesque-LightItalic.ttf")
-      format("TrueType");
+  src: url("./fonts/raleway-all/Raleway-LightItalic.ttf") format("TrueType");
   font-style: italic;
   font-weight: lighter;
 }
 
+/* Bolder */
 @font-face {
   font-family: "LabGrotesque";
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-Medium.eot");
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-Medium.woff2")
-      format("woff2"),
-    url("./fonts/Lab Grotesque-font/LabGrotesque-Medium.ttf") format("TrueType");
-
+  src: url("./fonts/raleway-all/Raleway-SemiBold.ttf") format("TrueType");
   font-weight: bolder;
 }
 
+/* BolderItalic */
 @font-face {
   font-family: "LabGrotesque";
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-MediumItalic.eot");
-  src: url("./fonts/Lab Grotesque-font/LabGrotesque-MediumItalic.woff2")
-      format("woff2"),
-    url("./fonts/Lab Grotesque-font/LabGrotesque-MediumItalic.ttf")
-      format("TrueType");
+  src: url("./fonts/raleway-all/Raleway-BoldItalic.ttf") format("TrueType");
 
   font-style: italic;
   font-weight: bolder;

@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { Link, Typography } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles({
   linkStyle: {
@@ -23,9 +24,15 @@ const MenuListItems = ({
   closePaperMenu,
 }) => {
   const classes = useStyles();
+  const isExternal = /^\/\/.*/.test(url);
+  const { t } = useTranslation();
 
   return (
-    <RouterLink style={{ textDecoration: "none" }} to={`${url}`}>
+    <RouterLink
+      target={isExternal ? "_blank" : "_self"}
+      style={{ textDecoration: "none" }}
+      to={`${url}`}
+    >
       <Link
         underline="none"
         className={classes.linkStyle}
@@ -39,7 +46,7 @@ const MenuListItems = ({
         <Typography
           style={!isLast ? { marginBottom: 10 } : { marginBottom: 0 }}
         >
-          {name}
+          {t(name)}
         </Typography>
       </Link>
     </RouterLink>

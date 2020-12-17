@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
@@ -10,31 +10,40 @@ const colors = {
   black: "#191919",
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   buttonContainer: (props) => ({
-    padding: props.isSquare ? "10" : "7px 70px",
+    padding: "10px 60px",
     border: props.thinBorder ? "1px solid" : "2px solid",
     "&:hover": { border: props.thinBorder ? "1px solid" : "2px solid" },
     borderRadius: 0,
+    [theme.breakpoints.down("md")]: {
+      padding: "7px 50px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      padding: "5px 35px",
+    },
+    [theme.breakpoints.down("xs")]: {
+      padding: "2px 20px",
+      border: "1px solid",
+      "&:hover": { border: "1px solid" },
+    },
   }),
   buttonText: {
-    fontSize: "18px",
     fontWeight: 500,
+    margin: 0,
   },
-});
+}));
 
 const CusButton = (props) => {
-  const { color, children, style, square, thinBorder, ...rest } = props;
-  const classes = useStyles({ isSquare: square, thinBorder: thinBorder });
+  const { color, children, style, thinBorder, className, ...rest } = props;
+  const classes = useStyles({ thinBorder: thinBorder });
   return (
     <Button
-      className={clsx({
-        [classes.buttonContainer]: true,
-      })}
+      className={clsx(classes.buttonContainer, className)}
       style={{ color: colors[color], ...style }}
       {...rest}
     >
-      {children}
+      <Typography className={classes.buttonText}>{children}</Typography>
     </Button>
   );
 };
@@ -43,7 +52,6 @@ CusButton.defaultProps = {
   variant: "outlined",
   color: "primary",
   style: {},
-  square: false,
   thinBorder: false,
 };
 

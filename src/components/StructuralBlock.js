@@ -14,6 +14,7 @@ const useStyles = makeStyles({
   }),
   typographyStyle: {
     width: "75%",
+    fontSize: 16,
   },
 });
 
@@ -40,9 +41,7 @@ const BlockWithoutLink = ({ title, picName }) => {
   return (
     <Paper square className={classes.paperBlock}>
       <Box>
-        <Typography variant="h5" className={classes.typographyStyle}>
-          {title}
-        </Typography>
+        <Typography className={classes.typographyStyle}>{title}</Typography>
       </Box>
     </Paper>
   );

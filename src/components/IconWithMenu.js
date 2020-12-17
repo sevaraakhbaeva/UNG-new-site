@@ -19,8 +19,8 @@ const useStyles = makeStyles({
 });
 
 const dictionaryOfLang = {
-  uz: "Uz",
-  ru: "Ru",
+  uz: "Ўз",
+  ru: "Ру",
   en: "En",
 };
 

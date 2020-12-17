@@ -31,7 +31,7 @@ const CusCard = ({ newsInfo }) => {
   return (
     <Card className={classes.root} elevation={3}>
       <CardMedia title="News item">
-        <Link href={`/press/news/${newsInfo["slug"]}`}>
+        <Link href={`/press/page/${newsInfo["slug"]}`}>
           <img
             alt="News"
             className={classes.imgStyle}
@@ -40,14 +40,17 @@ const CusCard = ({ newsInfo }) => {
         </Link>
       </CardMedia>
       <CardContent className={classes.cardContentStyle}>
-        <Link href={`/press/news/${newsInfo["slug"]}`}>
+        <Link href={`/press/page/${newsInfo["slug"]}`}>
           <Typography gutterBottom variant="h5">
             {newsInfo[`news_title_${currentLanguage}`]}
           </Typography>
         </Link>
         <IconWithText
           Icon={<ClockIcon />}
-          text={formatDateAndTimeToDate(newsInfo["date_updated"])}
+          text={formatDateAndTimeToDate(
+            newsInfo["date_updated"],
+            currentLanguage
+          )}
           style={{ marginTop: "10px", color: "#999999" }}
         />
       </CardContent>

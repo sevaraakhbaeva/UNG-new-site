@@ -14,7 +14,6 @@ const useStyles = makeStyles({
 
 const SearchBlock = () => {
   const setting = {
-    square: true,
     thinBorder: true,
     style: { marginRight: 10, height: 50 },
   };

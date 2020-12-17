@@ -9,12 +9,21 @@ const useStyles = makeStyles((theme) => ({
     height: "5px",
     borderRadius: "50px",
   },
+  titlePadding: {
+    marginBottom: 30,
+    [theme.breakpoints.down("md")]: {
+      marginBottom: 20,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: 10,
+    },
+  },
 }));
 
 const Title = ({ children, textStyle, variant }) => {
   const classes = useStyles();
   return (
-    <Box style={{ marginBottom: "30px" }}>
+    <Box className={classes.titlePadding}>
       <Typography style={{ ...textStyle }} variant={variant}>
         {children}
       </Typography>

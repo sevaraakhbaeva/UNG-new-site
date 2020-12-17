@@ -1,21 +1,33 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "./Button";
+import Button from "components/Button";
 import Slider from "react-slick";
-import Arrow from "./Arrow";
+import Arrow from "components/Arrow";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
   sliderTitle: {
     color: "white",
+    [theme.breakpoints.down("md")]: {
+      fontSize: 24,
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 20,
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: 14,
+    },
   },
   sliderDescription: {
     color: "white",
   },
   imageContainer: {
     height: "100vh",
-    minHeight: 500,
     overflow: "hidden",
+    [theme.breakpoints.down("md")]: {
+      height: "auto",
+    },
   },
   sliderContainer: {
     position: "relative",
@@ -27,24 +39,24 @@ const useStyles = makeStyles((theme) => ({
     transform: "translate(-50%, -50%)",
     textAlign: "center",
   },
+  imageWidth: {
+    width: "100%",
+  },
+  buttonMargin: {
+    marginTop: "75px",
+    [theme.breakpoints.down("md")]: {
+      marginTop: 50,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 25,
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: 15,
+    },
+  },
 }));
 
-const CusSlider = () => {
-  let items = [
-    {
-      name: "“O‘zbekneftgaz” AJ yoshlariga bayram tabrigi",
-      description:
-        "“O‘zbekneftgaz” AJ Boshqaruvi raisi Mehriddin Abdullaevning yurtimiz mustaqilligining 29 yilligi munosabati bilan tizimdagi xodimlarga bayram tabrigi",
-      imageUrl: "/images/slider/img1.png",
-    },
-    {
-      name: "“O‘zbekneftgaz” AJ yoshlariga bayram tabrigi",
-      description:
-        "“O‘zbekneftgaz” AJ Boshqaruvi raisi Mehriddin Abdullaevning yurtimiz mustaqilligining 29 yilligi munosabati bilan tizimdagi xodimlarga bayram tabrigi",
-      imageUrl: "/images/slider/img2.jpg",
-    },
-  ];
-
+const CusSlider = ({ data }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -52,14 +64,14 @@ const CusSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    nextArrow: <Arrow direction="right" style={{ right: 25 }} />,
-    prevArrow: <Arrow direction="left" style={{ left: 25 }} />,
+    nextArrow: <Arrow direction="right" />,
+    prevArrow: <Arrow direction="left" />,
   };
 
   return (
     <>
       <Slider {...settings}>
-        {items.map((item, i) => (
+        {data.results.map((item, i) => (
           <CarouselItem key={i} item={item} />
         ))}
       </Slider>
@@ -69,21 +81,31 @@ const CusSlider = () => {
 
 function CarouselItem(props) {
   const classes = useStyles();
+  const { t, i18n } = useTranslation();
 
   return (
     <Box className={classes.sliderContainer}>
       <Box className={classes.imageContainer}>
-        <img alt="Slider" style={{ width: "100%" }} src={props.item.imageUrl} />
+        <img
+          alt="Slider"
+          className={classes.imageWidth}
+          src={props.item.image}
+        />
       </Box>
       <Box className={classes.sliderCaption}>
         <Typography variant="h3" className={classes.sliderTitle}>
-          {props.item.name}
+          {props.item[`news_title_${i18n.language}`]}
         </Typography>
-        <Typography variant="h4" className={classes.sliderDescription}>
+        {/* <Typography variant="h4" className={classes.sliderDescription}>
           {props.item.description}
-        </Typography>
-        <Button color="white" style={{ marginTop: "75px" }}>
-          {"Batafsil"}
+        </Typography> */}
+        <Button
+          component="a"
+          href={`/press/page/${props.item.slug}`}
+          color="white"
+          className={classes.buttonMargin}
+        >
+          {t("More")}
         </Button>
       </Box>
     </Box>

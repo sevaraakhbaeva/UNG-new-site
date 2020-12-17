@@ -10,6 +10,14 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("xl")]: {
       fontSize: 20,
     },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12,
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: 10,
+      marginLeft: reverse ? "0px" : "2px",
+      marginRight: reverse ? "2px" : "0px",
+    },
   }),
 }));
 
@@ -26,7 +34,9 @@ const IconWithText = ({ Icon, text, style, reverse, textStyle }) => {
         ...style,
       }}
     >
-      <Grid item>{Icon}</Grid>
+      <Grid className={classes.iconStyle} item>
+        {Icon}
+      </Grid>
       <Grid item>
         <Typography style={{ ...textStyle }} className={classes.textStyle}>
           {text}

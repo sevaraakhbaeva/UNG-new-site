@@ -4,8 +4,6 @@ import {
   Typography,
   Box,
   IconButton,
-  TextField,
-  FormControl,
 } from "@material-ui/core";
 import Block from "./Block";
 import { ReactComponent as TwitterIcon } from "../icons/Social/twitter.svg";
@@ -16,26 +14,36 @@ import { ReactComponent as VkIcon } from "../icons/Social/vk.svg";
 import { ReactComponent as YoutubeIcon } from "../icons/Social/youtube.svg";
 import { ReactComponent as LinkedInIcon } from "../icons/Social/linkedin.svg";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "./Button";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   typographyMargin: { marginBottom: "15px" },
   zeroMargin: { margin: 0 },
-});
+  imgStyle: {
+    width: "60%",
+    marginBottom: 30,
+    maxWidth: 150
+  },
+  socialContainer: {
+    [theme.breakpoints.down("xs")] : {
+      display: "flex",
+      justifyContent: "center",
+      flexWrap: "wrap"
+    }
+  }
+}));
 
 const Footer = () => {
   const classes = useStyles();
   return (
     <Block withBackground>
       <Grid direction="column" container>
-        <Grid item container style={{ marginBottom: "20px" }}>
+        <Grid item container style={{ marginBottom: 20,}}>
           <Grid item xs={12} md={6}>
             <Box style={{ width: "80%" }}>
               <img
                 alt="UNG logo"
                 src="/images/logo.png"
-                width="250"
-                style={{ marginBottom: "30px" }}
+                className={classes.imgStyle}
               />
               <Typography
                 color="primary"
@@ -110,7 +118,7 @@ const Footer = () => {
             <Typography variant="h5" className={classes.typographyMargin}>
               Bizni ijtimoiy tarmoqlarda kuzatib boring
             </Typography>
-            <Box>
+            <Box className={classes.socialContainer}>
               <IconButton>
                 <TelegramIcon />
               </IconButton>
@@ -135,7 +143,7 @@ const Footer = () => {
             </Box>
           </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
           <Typography variant="h5" className={classes.typographyMargin}>
             Подписаться на наши обновления
           </Typography>
@@ -147,10 +155,10 @@ const Footer = () => {
                 style={{ marginRight: 10, width: "50%", maxWidth: 300 }}
                 InputLabelProps={{ style: { margin: 0, fontSize: 16 } }}
               />
-              <Button square>Подписаться</Button>
+              <Button>Подписаться</Button>
             </Grid>
           </FormControl>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Block>
   );

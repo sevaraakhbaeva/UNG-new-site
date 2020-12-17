@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -9,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
       padding: "15px 40px",
     },
     [theme.breakpoints.down("sm")]: {
-      padding: "10px 30px",
+      padding: "15px 30px",
     },
   },
   ornamentStyles: {
@@ -27,17 +28,19 @@ const useStyles = makeStyles((theme) => ({
       backgroundSize: 22,
     },
   },
+  backgroundColor: {
+    backgroundColor: "#FAFAFA",
+  },
 }));
 
 const Block = ({ children, style, withBackground, withOrnament }) => {
   const classes = useStyles();
   return (
     <Box
-      className={withOrnament ? classes.ornamentStyles : {}}
-      style={{
-        width: "100%",
-        backgroundColor: withBackground ? "#FAFAFA" : "",
-      }}
+      className={clsx(
+        withOrnament && classes.ornamentStyles,
+        withBackground && classes.backgroundColor
+      )}
     >
       <Container className={classes.container} style={{ ...style }}>
         {children}

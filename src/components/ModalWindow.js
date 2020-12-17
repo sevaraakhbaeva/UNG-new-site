@@ -92,10 +92,10 @@ const ModalWindow = ({ handleClose, open, workerData, tableRows }) => {
                   component="th"
                   scope="row"
                 >
-                  {item[1]}
+                  <Typography>{item[1]}</Typography>
                 </TableCell>
                 <TableCell className={classes.cellStyle}>
-                  {workerData[item[0]]}
+                  <Typography>{workerData[item[0]]}</Typography>
                 </TableCell>
               </TableRow>
             ))}

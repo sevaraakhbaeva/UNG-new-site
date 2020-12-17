@@ -3,6 +3,9 @@ import { Paper, Typography } from "@material-ui/core";
 import { ReactComponent as ClockIcon } from "../icons/clock.svg";
 import IconWithText from "./IconWithText";
 import { makeStyles } from "@material-ui/styles";
+import { useTranslation } from "react-i18next";
+import HtmlConverter from "components/HtmlConverter";
+import { formatDateAndTimeToDate } from "utils/formatDate";
 
 const useStyles = makeStyles({
   paperStyle: (props) => ({
@@ -15,13 +18,21 @@ const useStyles = makeStyles({
 });
 
 const ShortDescriptionBlock = ({ objectInfo }) => {
-  const active = objectInfo.status === "open";
-  const classes = useStyles({ active: active });
+  const classes = useStyles({ active: objectInfo.status });
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+
   return (
     <Paper className={classes.paperStyle}>
-      <Typography variant="h5">{objectInfo.name}</Typography>
-      <Typography>{objectInfo.description}</Typography>
-      <Typography
+      <Typography variant="h5">
+        <HtmlConverter htmlString={objectInfo[`title_${currentLanguage}`]} />
+      </Typography>
+      <Typography>
+        <HtmlConverter
+          htmlString={objectInfo[`asosiy_talablar_${currentLanguage}`]}
+        />
+      </Typography>
+      {/* <Typography
         component="span"
         className={classes.boldTypography}
         color="secondary"
@@ -32,10 +43,13 @@ const ShortDescriptionBlock = ({ objectInfo }) => {
         <Typography color="secondary" component="span">
           {cat} {objectInfo.categories.length - 1 !== i && " | "}
         </Typography>
-      ))}
+      ))} */}
       <IconWithText
         Icon={<ClockIcon />}
-        text={"Tugash muddati: " + objectInfo.date}
+        text={
+          "Tugash muddati: " +
+          formatDateAndTimeToDate(objectInfo["date_published"])
+        }
         style={{ color: "#999999" }}
         textStyle={{ fontSize: 14, fontWeight: "normal" }}
       />

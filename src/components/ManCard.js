@@ -8,27 +8,25 @@ import {
   Button,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import ModalWindow from "./ModalWindow";
+import ModalWindow from "components/ModalWindow";
 
 const useStyles = makeStyles({
   root: {
     marginTop: "10px",
     borderRadius: 0,
-    height: "100%",
-    position: "relative",
     maxWidth: 270,
   },
   titleStyle: {
     fontWeight: "lighter",
   },
+  cardStyle: {
+    paddingLeft: "20px",
+    paddingRight: "20px",
+    minHeight: 125,
+  },
 });
 
-const ManCard = ({
-  workerData,
-  withoutDetailInfo = false,
-  picFolderUrl,
-  tableRows,
-}) => {
+const ManCard = ({ workerData, withoutDetailInfo = false, tableRows }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
@@ -45,10 +43,10 @@ const ManCard = ({
           <img
             alt="Worker"
             style={{ width: "100%" }}
-            src={`/images${picFolderUrl}/${workerData.picUrl}`}
+            src={`/images/neftBaza/unknown.png`}
           />
         </CardMedia>
-        <CardContent style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+        <CardContent className={classes.cardStyle}>
           <Typography
             color="primary"
             gutterBottom
@@ -61,8 +59,8 @@ const ManCard = ({
             {workerData.position}
           </Typography>
         </CardContent>
-        {!withoutDetailInfo && (
-          <CardActions>
+        <CardActions>
+          {!withoutDetailInfo && (
             <Button
               onClick={handleClickOpen}
               variant="outlined"
@@ -71,8 +69,8 @@ const ManCard = ({
             >
               Batafsil
             </Button>
-          </CardActions>
-        )}
+          )}
+        </CardActions>
       </Card>
       {!withoutDetailInfo && (
         <ModalWindow

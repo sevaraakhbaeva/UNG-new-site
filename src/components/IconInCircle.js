@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid } from "@material-ui/core";
 
-const IconInCircle = ({ Icon, scale, borderWidth }) => {
+const IconInCircle = ({ Icon, borderWidth, ...rest }) => {
   return (
     <Box
       borderRadius="50%"
@@ -9,9 +9,8 @@ const IconInCircle = ({ Icon, scale, borderWidth }) => {
       borderColor="#03A3DF"
       style={{
         display: "inline-block",
-        width: scale,
-        height: scale,
       }}
+      {...rest}
     >
       <Grid
         style={{ height: "100%", width: "100%" }}
@@ -26,7 +25,6 @@ const IconInCircle = ({ Icon, scale, borderWidth }) => {
 };
 
 IconInCircle.defaultProps = {
-  scale: 150,
   borderWidth: 4,
 };
 
