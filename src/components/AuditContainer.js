@@ -20,7 +20,7 @@ const AuditContainer = () => {
     >
       <Grid container justify="center" spacing={3}>
         {auditData.map((item) => (
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={6} md={4} container justify={"center"}>
             <ManCard
               tableRows={tableRows}
               workerData={item}

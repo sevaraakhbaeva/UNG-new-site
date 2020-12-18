@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Typography,
-  Box,
-  IconButton,
-} from "@material-ui/core";
+import { Grid, Typography, Box, IconButton } from "@material-ui/core";
 import Block from "./Block";
 import { ReactComponent as TwitterIcon } from "../icons/Social/twitter.svg";
 import { ReactComponent as FacebookIcon } from "../icons/Social/facebook.svg";
@@ -21,15 +16,15 @@ const useStyles = makeStyles((theme) => ({
   imgStyle: {
     width: "60%",
     marginBottom: 30,
-    maxWidth: 150
+    maxWidth: 150,
   },
   socialContainer: {
-    [theme.breakpoints.down("xs")] : {
+    [theme.breakpoints.down("xs")]: {
       display: "flex",
       justifyContent: "center",
-      flexWrap: "wrap"
-    }
-  }
+      flexWrap: "wrap",
+    },
+  },
 }));
 
 const Footer = () => {
@@ -37,7 +32,7 @@ const Footer = () => {
   return (
     <Block withBackground>
       <Grid direction="column" container>
-        <Grid item container style={{ marginBottom: 20,}}>
+        <Grid item container style={{ marginBottom: 20 }}>
           <Grid item xs={12} md={6}>
             <Box style={{ width: "80%" }}>
               <img

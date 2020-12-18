@@ -7,11 +7,24 @@ const useStyles = makeStyles({
     fontSize: 16,
     listStyle: "none",
     lineHeight: "160%",
+    fontWeight: "normal",
+    margin: "10px 0",
+    "@media (min-width:1920px)": {
+      fontSize: 24,
+    },
+    "@media (max-width:1920px)": {
+      fontSize: 16,
+    },
+    "@media (max-width:960px)": {
+      fontSize: 14,
+    },
+    "@media (max-width:600px)": {
+      fontSize: 12,
+    },
     "& img": {
       maxWidth: "100%",
     },
     "& > li": {
-      fontSize: 16,
       fontWeight: "normal",
       margin: "10px 0",
     },

@@ -5,32 +5,39 @@ import IconWithText from "components/IconWithText";
 import { ReactComponent as ArrowDownIcon } from "icons/chevron-down.svg";
 import { ReactComponent as ArrowUpIcon } from "icons/chevron-up.svg";
 import { useTranslation } from "react-i18next";
-import Menu from 'components/navbar/components/Menu';
+import Menu from "components/navbar/components/Menu";
 
 const splitMenuItems = (menuItems) => {
   let menuItemsWithChildren = [];
   let menuItemsNoChildren = [];
-  for(let item of menuItems){
-    if(item.children !== undefined && item.children.length > 0){
+  for (let item of menuItems) {
+    if (item.children !== undefined && item.children.length > 0) {
       menuItemsWithChildren.push(item);
-    } else{
+    } else {
       menuItemsNoChildren.push(item);
     }
   }
   return [menuItemsWithChildren, menuItemsNoChildren];
-}
+};
 
-const MenuBar = ({ handleParentMenuClick, parentMenuSelected, menuItems }) => {
+const MenuBar = ({
+  handleParentMenuClick,
+  parentMenuSelected,
+  menuItems,
+  closePaperMenu,
+}) => {
   const { t } = useTranslation();
-
-  const [menuItemsWithChildren, menuItemsNoChildren] = splitMenuItems(menuItems);
-
+  const [menuItemsWithChildren, menuItemsNoChildren] = splitMenuItems(
+    menuItems
+  );
   return (
     <Grid xs={12} item container alignItems="center" justify="space-between">
       {menuItemsWithChildren.map((item) => (
         <Grid key={item.id} item>
           <Link
-            onClick={() => handleParentMenuClick(item.id)}
+            onClick={() => {
+              handleParentMenuClick(item.id);
+            }}
             underline="none"
             style={{ color: "black", cursor: "pointer" }}
           >
@@ -49,7 +56,11 @@ const MenuBar = ({ handleParentMenuClick, parentMenuSelected, menuItems }) => {
         </Grid>
       ))}
       <Grid item>
-        <Menu options={menuItemsNoChildren} />
+        <Menu
+          options={menuItemsNoChildren}
+          parentMenuSelected={parentMenuSelected}
+          closePaperMenu={closePaperMenu}
+        />
       </Grid>
     </Grid>
   );

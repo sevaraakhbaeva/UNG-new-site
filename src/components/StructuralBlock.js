@@ -3,20 +3,27 @@ import { Paper, Typography, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { Link as RouterLink } from "react-router-dom";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   paperBlock: (props) => ({
     padding: "30px 15px",
-    minHeight: 200,
     backgroundImage: `url(/images/structuralSubdivision/${props.imagePath})`,
     backgroundPosition: "right bottom",
     backgroundRepeat: "no-repeat",
     backgroundSize: "auto 65%",
+    minHeight: 200,
+    [theme.breakpoints.up("lg")]: {
+      minHeight: 250,
+      padding: "40px 20px",
+    },
+    [theme.breakpoints.up("xl")]: {
+      minHeight: 325,
+      padding: "50px 30px",
+    },
   }),
   typographyStyle: {
     width: "75%",
-    fontSize: 16,
   },
-});
+}));
 
 const StructuralBlock = ({ dataItem, picName, parentUrl }) => {
   const isWithLink = Boolean(dataItem.link);

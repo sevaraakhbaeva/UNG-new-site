@@ -6,6 +6,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Grid,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import BlockLayout from "./BlockLayout";
@@ -23,17 +24,18 @@ const tableRows = {
   fax: "Факс",
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   image: {
-    height: 250,
-  },
-  tableStyle: {
-    width: "100%",
+    width: 250,
+    marginRight: 20,
+    [theme.breakpoints.down("xs")]: {
+      width: 210,
+    },
   },
   cellPadding: {
     padding: 0,
   },
-});
+}));
 
 const ManagerDetail = () => {
   const classes = useStyles();
@@ -52,13 +54,15 @@ const ManagerDetail = () => {
         managerData.name,
       ]}
     >
-      <Box style={{ display: "flex" }}>
-        <img
-          alt={managerData.name}
-          src={`/images/management/${managerData.image}`}
-          className={classes.image}
-        />
-        <Box className={classes.tableStyle} px={4}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} lg={3} md={4}>
+          <img
+            alt={managerData.name}
+            src={`/images/management/${managerData.image}`}
+            className={classes.image}
+          />
+        </Grid>
+        <Grid item xs={12} lg={9} md={8}>
           <Table size="small">
             <TableBody>
               {Object.entries(tableRows).map((item) => (
@@ -77,8 +81,8 @@ const ManagerDetail = () => {
               ))}
             </TableBody>
           </Table>
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
       <Box mt={3}>
         <Typography variant="h4">Биография</Typography>
         {bioArray.map(

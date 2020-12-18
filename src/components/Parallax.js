@@ -33,13 +33,19 @@ const useStyles = makeStyles((theme) => ({
   },
   backgroundImage: {
     backgroundImage: 'url("/images/main_history.png")',
-    height: "450px",
     backgroundAttachment: "fixed",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     display: "flex",
     alignItems: "center",
+    height: 450,
+    [theme.breakpoints.up("lg")]: {
+      height: 580,
+    },
+    [theme.breakpoints.up("xl")]: {
+      height: 700,
+    },
   },
 }));
 

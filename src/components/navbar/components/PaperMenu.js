@@ -6,23 +6,30 @@ import MenuListItem from "./MenuListItem";
 import { find } from "ramda";
 import SideMenuImage from "./SideMenuImage";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   menuStylePosition: {
     zIndex: 1500,
     position: "absolute",
     left: "50%",
     transform: "translateX(-50%)",
     backgroundImage: "url(/images/UNGBrand.png)",
-    backgroundRepeat: "no-repeat",
+    backgroundRepeat: "repeat-y",
     width: "85%",
   },
   marginRight: { marginRight: 40 },
   cornerBorder: {
     borderRight: "1px solid #CCCCCC",
     padding: "30px 0 30px 80px",
+    minHeight: 500,
+    [theme.breakpoints.up("lg")]: {
+      minHeight: 600,
+    },
+    [theme.breakpoints.up("xl")]: {
+      minHeight: 700,
+    },
   },
-  sideImageHeight: { minHeight: 500, height: "100%" },
-});
+  sideImageHeight: { height: "100%" },
+}));
 
 const PaperMenu = ({ parentId, parentUrl, parentMenuList, closePaperMenu }) => {
   const classes = useStyles();

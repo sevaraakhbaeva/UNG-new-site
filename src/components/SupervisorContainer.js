@@ -27,7 +27,7 @@ const SupervisorContainer = () => {
       </Typography>
       <Grid container justify="center" spacing={3}>
         {supervisorData.workers.map((item) => (
-          <Grid item xs={12} sm={6} md={4}>
+          <Grid item xs={12} sm={6} md={4} container justify={"center"}>
             <ManCard
               workerData={item}
               withoutDetailInfo

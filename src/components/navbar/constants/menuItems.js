@@ -9,6 +9,180 @@ export const menuPicPaths = {
   8: "Press.png",
 };
 
+export const initialMenuItems = [
+  {
+    name_ru: "Бизнесу",
+    name_en: "To business",
+    name_uz: "Бизнесга оид",
+    img:
+      "http://webdev.ung.uz/media/static/menu/headline_shutterstock_243762007_pozHlkm.jpg",
+    url: "/business",
+    id: 2,
+    sub_category: [
+      {
+        name_ru: "Локализация",
+        name_en: "Localization",
+        name_uz: "Маҳаллийлаштириш",
+        id: 3,
+        url: "/localization",
+        redir: {
+          name_ru: "Локализация",
+          name_en: "Localization",
+          name_uz: "Маҳаллийлаштириш",
+          id: 9,
+          sub_category: [
+            {
+              category: 9,
+              subcategory_ru: "Локализация производства",
+              subcategory_en: "Localization of production",
+              subcategory_uz: "Ишлаб чиқаришни маҳаллийлаштириш",
+              id: 26,
+            },
+            {
+              category: 9,
+              subcategory_ru: "Программа локализации АО «Узбекнефтегаз»",
+              subcategory_en: "Localization program JSC «Uzbekneftgaz»",
+              subcategory_uz: "«Ўзбекнефтгаз» АЖнинг маҳаллийлаштириш дастури",
+              id: 25,
+            },
+            {
+              category: 9,
+              subcategory_ru: "Цели сокращения импорта",
+              subcategory_en: "The goal of reducing imports",
+              subcategory_uz: "Импортни қисқартиришнинг мақсадли кўрсаткичлари",
+              id: 24,
+            },
+            {
+              category: 9,
+              subcategory_ru:
+                "Потребность в материально-технических ресурсах и услугах",
+              subcategory_en:
+                "Need for material and technical resources and services",
+              subcategory_uz:
+                "Моддий-техник ресурслар ва хизматларга бўлган эҳтиёж",
+              id: 23,
+            },
+            {
+              category: 9,
+              subcategory_ru: "Промышленная ярмарка и Кооперационная биржа",
+              subcategory_en: "Industrial fair and Cooperative exchange",
+              subcategory_uz: "Саноат ярмаркаси ва кооперация биржаси",
+              id: 21,
+            },
+          ],
+        },
+      },
+      {
+        name_ru: "Легальная информация",
+        name_en: "Legal information",
+        name_uz: "Хуқуқий маълумотлар",
+        id: 4,
+        url: "/legal-info",
+        redir: null,
+      },
+      {
+        name_ru: "Товары",
+        name_en: "Merchandises",
+        name_uz: "Махсулотлар",
+        id: 2,
+        url: "/products",
+        redir: null,
+      },
+      {
+        name_ru: "Конкурсы",
+        name_en: "Procurement",
+        name_uz: "Конкурслар",
+        id: 1,
+        url: "/tender",
+        redir: null,
+      },
+    ],
+  },
+  {
+    name_ru: "О нас",
+    name_en: "About us",
+    name_uz: "Биз ҳақимизда",
+    img:
+      "http://webdev.ung.uz/media/static/menu/aaron-burden-dXYE1d08BiY-unsplash.jpg",
+    url: "/about",
+    id: 3,
+    sub_category: [
+      {
+        name_ru: "Нормативно-правовые акты",
+        name_en: "Regulations",
+        name_uz: "Соҳага оид меъёрий хужжатлар",
+        id: 5,
+        url: "/regulations",
+        redir: {
+          name_ru: "Нормативно-правовые акты",
+          name_en: "Regulations",
+          name_uz: "Соҳага оид меъёрий хужжатлар",
+          id: 8,
+          sub_category: [
+            {
+              category: 8,
+              subcategory_ru: "О безопасности",
+              subcategory_en: "About security",
+              subcategory_uz: "UZ: О безопасности",
+              id: 20,
+            },
+            {
+              category: 8,
+              subcategory_ru: "Законы Республики Узбекистан",
+              subcategory_en: "Laws of the Republic of Uzbekistan",
+              subcategory_uz: "UZ: Laws of the Republic of Uzbekistan",
+              id: 19,
+            },
+            {
+              category: 8,
+              subcategory_ru:
+                "Указы, Постановления и Распоряжения Президента Республики Узбекистан",
+              subcategory_en:
+                "Decrees, Resolutions and Orders of the President of the Republic of Uzbekistan",
+              subcategory_uz:
+                "O'zbekiston Respublikasi Prezidentining Farmonlari, qarorlari va farmoyishlari",
+              id: 18,
+            },
+            {
+              category: 8,
+              subcategory_ru: "Для хозяйствующих субъектов",
+              subcategory_en: "Economic entity",
+              subcategory_uz: "Тадбиркорлик субъектлари учун",
+              id: 22,
+            },
+          ],
+        },
+      },
+      {
+        name_ru: "История общества",
+        name_en: "History of society",
+        name_uz: "Жамият тарихи",
+        id: 7,
+        url: "/history",
+        redir: null,
+      },
+      {
+        name_ru: "Организационная структура",
+        name_en: "Organizational Structure",
+        name_uz: "Ташкилий тузилма",
+        id: 6,
+        url: "/departments",
+        redir: null,
+      },
+    ],
+  },
+  {
+    name_ru: "Открытые данные",
+    name_en: "Open Data",
+    name_uz: "Open Data",
+    img:
+      "http://webdev.ung.uz/media/static/menu/headline_shutterstock_243762007.jpg",
+    url: "/open-data",
+    id: 1,
+    sub_category: [],
+  },
+];
+
 export const menuItems = [
   {
     id: 1,
@@ -112,9 +286,7 @@ export const menuItems = [
         id: 3,
         name: "Localization",
         url: "/localization",
-        children: [
-
-        ],
+        children: [],
       },
       {
         id: 4,
@@ -240,15 +412,13 @@ export const menuItems = [
     id: 4,
     name: "News press center",
     url: "/press",
-    children: [
-    ],
+    children: [],
   },
   {
     id: 5,
     name: "Youth policy",
     url: "/youth",
-    children: [
-    ],
+    children: [],
   },
   {
     id: 6,
@@ -313,7 +483,6 @@ export const menuItems = [
     id: 8,
     name: "Open Data",
     url: "/open-data",
-    children: [
-    ],
+    children: [],
   },
 ];

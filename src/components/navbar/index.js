@@ -20,14 +20,14 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 48,
     paddingLeft: 100,
     paddingRight: 100,
-    [theme.breakpoints.down('md')] : {
+    [theme.breakpoints.down("md")]: {
       paddingLeft: 50,
       paddingRight: 50,
     },
-    [theme.breakpoints.down('sm')] : {
+    [theme.breakpoints.down("sm")]: {
       paddingLeft: 24,
       paddingRight: 24,
-    }
+    },
   },
 }));
 
@@ -40,19 +40,48 @@ export const navInitSerializer = (values, lang) => {
   });
 };
 
+const serializeMenuItems = (menuItems, lang) => {
+  return menuItems.map((item) => {
+    const name = item[`name_${lang}`];
+    const children = item.hasOwnProperty("sub_category")
+      ? item.sub_category.map((subCategory) => {
+          const name = subCategory[`name_${lang}`];
+          const children =
+            subCategory.hasOwnProperty("redir") && subCategory.redir !== null
+              ? subCategory.redir.sub_category.map((subOfFilePage) => {
+                  const name = subOfFilePage[`subcategory_${lang}`];
+                  const url = `/${subCategory.redir.id}/sub/${subOfFilePage.id}`;
+                  return { id: subOfFilePage.id, name: name, url: url };
+                })
+              : [];
+          return {
+            id: subCategory.id,
+            url: subCategory.url,
+            name: name,
+            children: children,
+          };
+        })
+      : [];
+    return { id: item.id, name: name, url: item.url, children: children };
+  });
+};
+
 const Navbar = () => {
   const classes = useStyles();
   const theme = useTheme();
   const hideMenu = useMediaQuery(theme.breakpoints.down("sm"));
+  const { i18n } = useTranslation();
+  // const [menuItems, setMenuItems] = useState(
+  //   serializeMenuItems(initialMenuItems, i18n.language)
+  // );
 
   const [menuItems, setMenuItems] = useState(initialMenuItems);
 
   const { data } = useGetList(API.TENDER_COMPANIES);
-  const { i18n } = useTranslation();
 
   const changeNewItems = useCallback((res) => {
     const TO_BUSINESS_ID = 2;
-    const TENDER_ID = 2;
+    const TENDER_ID = 1;
     const newMenuItems = initialMenuItems.map((menuItem) =>
       menuItem.id === TO_BUSINESS_ID
         ? {
@@ -123,6 +152,7 @@ const Navbar = () => {
               handleParentMenuClick={handleParentMenuClick}
               parentMenuSelected={parentMenuSelected}
               menuItems={menuItems}
+              closePaperMenu={closePaperMenu}
             />
           </Toolbar>
         )}

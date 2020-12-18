@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
   },
   titleStyle: {
     marginBottom: 35,
-    fontSize: 17,
     [theme.breakpoints.down("md")]: {
       marginBottom: 25,
     },
@@ -63,7 +62,11 @@ const StructSubContainer = () => {
     >
       {structSubData.map((divisionBlock) => (
         <Box className={classes.blockStyle}>
-          <Typography className={classes.titleStyle} color="primary">
+          <Typography
+            className={classes.titleStyle}
+            variant={"h4"}
+            color="primary"
+          >
             {divisionBlock.title}
           </Typography>
           <Box className={classes.gridContainer}>

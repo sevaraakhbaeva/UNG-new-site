@@ -28,7 +28,7 @@ const topMenuItems = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "25px",
+    height: 25,
     width: "100%",
   },
   menuItem: {

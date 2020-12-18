@@ -5,9 +5,15 @@ import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: "20px 60px",
+    padding: "30px 60px",
+    [theme.breakpoints.up("xl")]: {
+      padding: "50px 90px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      padding: "40px 70px",
+    },
     [theme.breakpoints.down("md")]: {
-      padding: "15px 40px",
+      padding: "20px 40px",
     },
     [theme.breakpoints.down("sm")]: {
       padding: "15px 30px",
@@ -42,9 +48,9 @@ const Block = ({ children, style, withBackground, withOrnament }) => {
         withBackground && classes.backgroundColor
       )}
     >
-      <Container className={classes.container} style={{ ...style }}>
+      <Box className={classes.container} style={{ ...style }}>
         {children}
-      </Container>
+      </Box>
     </Box>
   );
 };

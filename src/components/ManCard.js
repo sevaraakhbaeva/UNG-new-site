@@ -10,11 +10,17 @@ import {
 import { makeStyles } from "@material-ui/styles";
 import ModalWindow from "components/ModalWindow";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "10px",
     borderRadius: 0,
     maxWidth: 270,
+    [theme.breakpoints.up("lg")]: {
+      maxWidth: 340,
+    },
+    [theme.breakpoints.up("xl")]: {
+      maxWidth: 400,
+    },
   },
   titleStyle: {
     fontWeight: "lighter",
@@ -23,8 +29,17 @@ const useStyles = makeStyles({
     paddingLeft: "20px",
     paddingRight: "20px",
     minHeight: 125,
+    [theme.breakpoints.down("sm")]: {
+      minHeight: 90,
+    },
+    [theme.breakpoints.down("xs")]: {
+      minHeight: 70,
+    },
   },
-});
+  buttonText: {
+    margin: 0,
+  },
+}));
 
 const ManCard = ({ workerData, withoutDetailInfo = false, tableRows }) => {
   const classes = useStyles();
@@ -67,7 +82,7 @@ const ManCard = ({ workerData, withoutDetailInfo = false, tableRows }) => {
               fullWidth
               color="primary"
             >
-              Batafsil
+              <Typography className={classes.buttonText}>Batafsil</Typography>
             </Button>
           )}
         </CardActions>

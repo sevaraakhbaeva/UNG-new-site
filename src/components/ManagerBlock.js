@@ -19,7 +19,9 @@ const useStyles = makeStyles((theme) =>
       },
     },
     image: {
-      width: 250,
+      maxWidth: 250,
+      marginRight: 20,
+      width: "100%",
     },
     textStyle: {
       fontSize: 16,
@@ -36,7 +38,7 @@ const ManagerBlock = ({ managerData }) => {
         src={`/images/management/${managerData.image}`}
         className={classes.image}
       />
-      <Box px={4} py={2}>
+      <Box py={2}>
         <Typography variant="h4">{managerData.name}</Typography>
         <Typography color="primary" className={classes.textStyle}>
           {managerData.position}

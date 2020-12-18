@@ -5,6 +5,7 @@ import Arrow from "./Arrow";
 import Title from "./Title";
 import Block from "./Block";
 import { breakpoints } from "constants/breakpoints";
+import { makeStyles } from "@material-ui/styles";
 
 var items = [
   {
@@ -32,6 +33,17 @@ var items = [
     imageUrl: "/images/partners/img6.png",
   },
 ];
+
+const useStyle = makeStyles({
+  imageContainer: {
+    height: 180,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-end",
+    minWidth: 280,
+    alignItems: "center",
+  },
+});
 
 const Partners = () => {
   const [numberOfSlides, setNumberOfSlides] = React.useState(null);
@@ -74,16 +86,11 @@ const Partners = () => {
 };
 
 function PartnerItem(props) {
+  const classes = useStyle();
   return (
-    <Grid
-      container
-      direction="column"
-      alignItems="center"
-      style={{ position: "relative" }}
-    >
-      <Box style={{ height: "100px", display: "flex", alignItems: "flex-end" }}>
-        <img alt={props.item.name} src={props.item.imageUrl} />
-      </Box>
+    <Box className={classes.imageContainer} mr={2}>
+      <img alt={props.item.name} src={props.item.imageUrl} />
+
       <Typography
         style={{
           margin: "20px",
@@ -95,7 +102,7 @@ function PartnerItem(props) {
       >
         {props.item.name}
       </Typography>
-    </Grid>
+    </Box>
   );
 }
 

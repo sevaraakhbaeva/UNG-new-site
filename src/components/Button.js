@@ -16,17 +16,6 @@ const useStyles = makeStyles((theme) => ({
     border: props.thinBorder ? "1px solid" : "2px solid",
     "&:hover": { border: props.thinBorder ? "1px solid" : "2px solid" },
     borderRadius: 0,
-    [theme.breakpoints.down("md")]: {
-      padding: "7px 50px",
-    },
-    [theme.breakpoints.down("sm")]: {
-      padding: "5px 35px",
-    },
-    [theme.breakpoints.down("xs")]: {
-      padding: "2px 20px",
-      border: "1px solid",
-      "&:hover": { border: "1px solid" },
-    },
   }),
   buttonText: {
     fontWeight: 500,

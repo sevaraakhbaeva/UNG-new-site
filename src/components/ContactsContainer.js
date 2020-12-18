@@ -4,7 +4,7 @@ import BlockLayout from "./BlockLayout";
 import { makeStyles } from "@material-ui/core/styles";
 import UngMap from "./UngMap";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   dayBlockStyle: (props) => ({
     backgroundColor: props.isWeekDay ? "#03A3DF" : "#CCCCCC",
     color: "#FFFFFF",
@@ -17,7 +17,25 @@ const useStyles = makeStyles({
     marginBottom: 30,
     marginTop: 20,
   },
-});
+  dayBlock: {
+    width: 100,
+    [theme.breakpoints.up("xl")]: {
+      width: 120,
+    },
+  },
+  heightMap: {
+    height: 500,
+    width: "100%",
+    [theme.breakpoints.up("lg")]: {
+      height: 600,
+      width: "90%",
+    },
+    [theme.breakpoints.up("xl")]: {
+      height: 700,
+      width: "85%",
+    },
+  },
+}));
 
 const regDays = "9:00-18:00";
 
@@ -89,14 +107,22 @@ const ContactsContainer = () => {
           >
             Ish tartibi
           </Typography>
-          <Box display="inline-block">
+          <Box
+            display="inline-block"
+            display={"flex"}
+            justifyContent={"center"}
+            flexWrap={"wrap"}
+            mb={2}
+          >
             {days.map((day) => (
               <DayBlock dayInfo={day} />
             ))}
           </Box>
         </Box>
-        <Box width="100%">
-          <UngMap />
+        <Box display={"flex"} justifyContent={"center"} width={"100%"}>
+          <Box className={classes.heightMap}>
+            <UngMap />
+          </Box>
         </Box>
       </Grid>
     </BlockLayout>
@@ -107,7 +133,7 @@ const DayBlock = ({ dayInfo }) => {
   const isWeekDay = dayInfo !== "Shan" && dayInfo !== "Yak";
   const classes = useStyles({ isWeekDay: isWeekDay });
   return (
-    <Box display="inline-block" width={100} mx={1}>
+    <Box display="inline-block" className={classes.dayBlock} mx={1}>
       <Box
         display="flex"
         justifyContent="center"

@@ -7,46 +7,46 @@ import { ReactComponent as GazIcon } from "../icons/rating3.svg";
 import { useTranslation } from "react-i18next";
 import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
-import {makeStyles} from "@material-ui/styles";
+import { makeStyles } from "@material-ui/styles";
 
-const useStyles=makeStyles((theme) => ({
-    captionColor:{
-        color: "#999999"
+const useStyles = makeStyles((theme) => ({
+  captionColor: {
+    color: "#999999",
+  },
+  marginDate: {
+    marginTop: 30,
+    [theme.breakpoints.down("md")]: {
+      marginTop: 20,
     },
-    marginDate: {
-        marginTop: 30,
-        [theme.breakpoints.down('md')]:{
-            marginTop: 20,
-        },
-        [theme.breakpoints.down('sm')]:{
-            marginTop: 15,
-        },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 15,
     },
-    numberStyle: {
-        fontWeight: "bold",
-        marginTop: 10,
-        fontSize: 44,
-        [theme.breakpoints.down('md')]:{
-            marginTop: 5,
-            fontSize: 38,
-        },
-        [theme.breakpoints.down('sm')]:{
-            marginTop: 0,
-            fontSize: 32,
-        },
+  },
+  numberStyle: {
+    fontWeight: "bold",
+    marginTop: 10,
+    fontSize: 44,
+    [theme.breakpoints.down("md")]: {
+      marginTop: 5,
+      fontSize: 38,
     },
-    marginCaption: {
-        [theme.breakpoints.down('md')]:{
-            marginTop: 5,
-        },
-        [theme.breakpoints.down('sm')]:{
-            marginTop: 0,
-        },
-    }
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 0,
+      fontSize: 32,
+    },
+  },
+  marginCaption: {
+    [theme.breakpoints.down("md")]: {
+      marginTop: 5,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 0,
+    },
+  },
 }));
 
 const Caption = ({ text, number }) => {
-    const classes = useStyles();
+  const classes = useStyles();
   const [focus, setFocus] = React.useState(false);
   const handleVisibility = (isVisible) => {
     if (isVisible) setFocus(true);
@@ -59,10 +59,7 @@ const Caption = ({ text, number }) => {
       <CountUp start={focus ? 0 : null} duration={2} end={number}>
         {({ countUpRef }) => (
           <VisibilitySensor onChange={handleVisibility} delayedCall>
-            <Typography
-              align="center"
-              className={classes.numberStyle}
-            >
+            <Typography align="center" className={classes.numberStyle}>
               <span ref={countUpRef} />
             </Typography>
           </VisibilitySensor>

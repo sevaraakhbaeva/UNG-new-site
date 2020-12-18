@@ -5,6 +5,7 @@ import Button from "components/Button";
 import Slider from "react-slick";
 import Arrow from "components/Arrow";
 import { useTranslation } from "react-i18next";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
   sliderTitle: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
   },
   imageContainer: {
-    height: "100vh",
+    height: "90vh",
     overflow: "hidden",
     [theme.breakpoints.down("md")]: {
       height: "auto",
@@ -52,6 +53,19 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       marginTop: 15,
+    },
+  },
+  buttonAdaptive: {
+    [theme.breakpoints.down("md")]: {
+      padding: "7px 50px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      padding: "5px 35px",
+    },
+    [theme.breakpoints.down("xs")]: {
+      padding: "2px 20px",
+      border: "1px solid",
+      "&:hover": { border: "1px solid" },
     },
   },
 }));
@@ -103,7 +117,7 @@ function CarouselItem(props) {
           component="a"
           href={`/press/page/${props.item.slug}`}
           color="white"
-          className={classes.buttonMargin}
+          className={clsx(classes.buttonMargin, classes.buttonAdaptive)}
         >
           {t("More")}
         </Button>

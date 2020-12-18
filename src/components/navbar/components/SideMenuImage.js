@@ -4,12 +4,12 @@ import { menuPicPaths } from "../constants/menuItems";
 import { Grid, Box, IconButton } from "@material-ui/core";
 import { ReactComponent as CloseIcon } from "../../../icons/cross.svg";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   blockRelative: {
     position: "relative",
     width: "100%",
     height: "100%",
-    minHeight: 515,
+    // minHeight: 515,
   },
   crossPosition: {
     position: "absolute",
@@ -21,13 +21,18 @@ const useStyles = makeStyles({
     padding: 0,
   },
   imageStyle: {
-    width: "80%",
     position: "absolute",
     bottom: 0,
     right: 0,
-    height: 500,
+    height: 400,
+    [theme.breakpoints.up("lg")]: {
+      height: 550,
+    },
+    [theme.breakpoints.up("xl")]: {
+      height: 610,
+    },
   },
-});
+}));
 const SideMenuImage = ({ closePaperMenu, idOfPic }) => {
   const classes = useStyles();
   return (

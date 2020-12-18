@@ -34,10 +34,6 @@ const styles = (theme) =>
     titleStyle: {
       width: "90%",
     },
-    dialogStyle: {
-      width: "30%",
-      minWidth: 300,
-    },
   });
 
 const DialogTitle = withStyles(styles)((props) => {
@@ -60,16 +56,26 @@ const DialogTitle = withStyles(styles)((props) => {
   );
 });
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   cellStyle: {
     maxWidth: 250,
     fontSize: 16,
   },
-});
+  dialogStyle: {
+    width: "30%",
+    minWidth: 300,
+    [theme.breakpoints.up("lg")]: {
+      width: "40%",
+      minWidth: 400,
+    },
+    [theme.breakpoints.up("xl")]: {
+      width: "40%",
+      minWidth: 500,
+    },
+  },
+}));
 
 const ModalWindow = ({ handleClose, open, workerData, tableRows }) => {
-  const size = Object.keys(workerData).length;
-
   const classes = useStyles();
   return (
     <Dialog
@@ -77,7 +83,8 @@ const ModalWindow = ({ handleClose, open, workerData, tableRows }) => {
       aria-labelledby="customized-dialog-title"
       open={open}
       TransitionComponent={Transition}
-      maxWidth={false}
+      fullWidth
+      maxWidth={"lg"}
     >
       <DialogTitle id="customized-dialog-title" onClose={handleClose}>
         {workerData.name}

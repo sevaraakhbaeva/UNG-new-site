@@ -22,9 +22,7 @@ const TextLocalizationContainer = ({ content }) => {
         </Typography>
       )}
 
-      <Typography>
-        <HtmlConverter htmlString={t(`${content}.paragraphs`)} />
-      </Typography>
+      <HtmlConverter htmlString={t(`${content}.paragraphs`)} />
 
       <LastChangesText>{t(`${content}.lastChange`)}</LastChangesText>
     </BlockLayout>

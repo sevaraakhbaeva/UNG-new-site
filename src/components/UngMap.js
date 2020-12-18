@@ -6,7 +6,7 @@ const UngMap = () => {
     <YMaps>
       <Map
         width="100%"
-        height={500}
+        height="100%"
         defaultState={{ center: [41.323728, 69.314167], zoom: 13 }}
       >
         <Placemark geometry={[41.305930192079664, 69.28450189235966]} />

@@ -15,7 +15,7 @@ const icons = {
   industrial: <IndustrialOilIcon />,
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   paperFuelBlock: {
     backgroundImage: "url(/images/neftBaza/logo.png)",
     backgroundPosition: "right bottom",
@@ -23,13 +23,22 @@ const useStyles = makeStyles({
     backgroundSize: "auto 80%",
     padding: "10px 5px",
   },
-});
+  blockWidth: {
+    maxWidth: 210,
+    [theme.breakpoints.up("lg")]: {
+      maxWidth: 250,
+    },
+    [theme.breakpoints.up("xl")]: {
+      maxWidth: 290,
+    },
+  },
+}));
 
 const FuelBlock = ({ productInfo }) => {
   const classes = useStyles();
   const Icon = icons[productInfo.iconName];
   return (
-    <Box width={"100%"} maxWidth={210} mr={1} mb={1}>
+    <Box width={"100%"} className={classes.blockWidth} mr={1} mb={1}>
       <Paper elevation={2} square className={classes.paperFuelBlock}>
         <Box height={70} display={"flex"} alignItems={"center"}>
           <Box pl={1} display={"flex"} alignItems={"center"}>

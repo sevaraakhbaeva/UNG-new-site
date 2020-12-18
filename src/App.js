@@ -67,6 +67,7 @@ import TextLocalizationContainer from "components/TextLocalizationContainer";
 import ScrollToTop from "components/ScrollToTop";
 import { useTranslation } from "react-i18next";
 import OilBaseJsonGenerator from "utils/OilBaseJsonGenerator";
+
 const THEME = createMuiTheme({
   typography: {
     fontFamily: "LabGrotesque, Calibri, sans-serif",
